@@ -11,6 +11,8 @@ import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public class VMenu extends JFrame {
 
@@ -39,41 +41,55 @@ public class VMenu extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 570, 386);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(8, 8, 8, 8));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnPedido = new JButton("Pedido");
-		btnPedido.setBounds(455, 11, 89, 40);
-		contentPane.add(btnPedido);
-		
-		JTextPane txtpnDescripcion = new JTextPane();
-		txtpnDescripcion.setText("Descripcion");
-		txtpnDescripcion.setBounds(271, 279, 273, 58);
-		contentPane.add(txtpnDescripcion);
+		JPanel panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 0, 5, 0));
+		contentPane.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new BorderLayout(10, 0));
 		
 		JButton btnAtras = new JButton("Atras");
-		btnAtras.setBounds(10, 11, 89, 23);
-		contentPane.add(btnAtras);
+		panel.add(btnAtras, BorderLayout.WEST);
 		
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(118, 15, 304, 14);
-		contentPane.add(lblNombre);
+		panel.add(lblNombre, BorderLayout.CENTER);
+		
+		JButton btnPedido = new JButton("Pedido");
+		panel.add(btnPedido, BorderLayout.EAST);
+		
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new EmptyBorder(15, 0, 5, 0));
+		panel_1.add(panel_2, BorderLayout.NORTH);
+		panel_2.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JLabel lblCategorias = new JLabel("CATEGORIAS");
-		lblCategorias.setBounds(10, 68, 206, 14);
-		contentPane.add(lblCategorias);
+		panel_2.add(lblCategorias);
 		
 		JLabel lblProductos = new JLabel("PRODUCTOS");
-		lblProductos.setBounds(277, 68, 256, 14);
-		contentPane.add(lblProductos);
+		panel_2.add(lblProductos);
+		
+		JPanel panel_3 = new JPanel();
+		panel_1.add(panel_3, BorderLayout.CENTER);
+		panel_3.setLayout(new GridLayout(0, 2, 5, 0));
 		
 		JList listCat = new JList();
-		listCat.setBounds(10, 93, 246, 244);
-		contentPane.add(listCat);
+		panel_3.add(listCat);
+		
+		JPanel panel_4 = new JPanel();
+		panel_3.add(panel_4);
+		panel_4.setLayout(new GridLayout(0, 1, 0, 5));
 		
 		JList listProd = new JList();
-		listProd.setBounds(271, 93, 273, 178);
-		contentPane.add(listProd);
+		panel_4.add(listProd);
+		
+		JTextPane txtpnDescripcion = new JTextPane();
+		panel_4.add(txtpnDescripcion);
+		txtpnDescripcion.setText("Descripcion");
 	}
 }

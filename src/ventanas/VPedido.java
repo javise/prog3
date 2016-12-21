@@ -51,7 +51,7 @@ public class VPedido extends JFrame {
 		labelPedido.setBounds(119, 15, 166, 14);
 		contentPane.add(labelPedido);
 		
-		JButton btnRecogida = new JButton("RECOGER/DOMICILIO");
+		JButton btnRecogida = new JButton("LOCAL/DOMICILIO");
 		btnRecogida.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnRecogida.setBounds(295, 11, 89, 40);
 		contentPane.add(btnRecogida);
@@ -81,7 +81,7 @@ public class VPedido extends JFrame {
 		contentPane.add(lblTotal);
 		
 		JButton btnPedir = new JButton("Pedir Ahora");
-		btnPedir.setBounds(162, 315, 89, 23);
+		btnPedir.setBounds(141, 315, 116, 23);
 		contentPane.add(btnPedir);
 		
 		JLabel lblPrecioSubtotal = new JLabel("€");
