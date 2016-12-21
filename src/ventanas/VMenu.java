@@ -9,9 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JList;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 public class VMenu extends JFrame {

@@ -1,6 +1,5 @@
 package ventanas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,11 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.SwingConstants;
 
 public class VPedido extends JFrame {
 
 	private JPanel contentPane;
+	private boolean domicilio = true; //f-local; t-domicilio
 
 	/**
 	 * Launch the application.
@@ -51,10 +54,22 @@ public class VPedido extends JFrame {
 		labelPedido.setBounds(119, 15, 166, 14);
 		contentPane.add(labelPedido);
 		
-		JButton btnRecogida = new JButton("LOCAL/DOMICILIO");
+		JButton btnRecogida = new JButton("DOMICILIO");
 		btnRecogida.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnRecogida.setBounds(295, 11, 89, 40);
 		contentPane.add(btnRecogida);
+		
+		btnRecogida.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(domicilio){
+					btnRecogida.setText("LOCAL");
+					domicilio = false;
+				}else{
+					btnRecogida.setText("DOMICILIO");
+					domicilio = true;
+				}
+			}
+		});
 		
 		JLabel lblResumen = new JLabel("RESUMEN:");
 		lblResumen.setBounds(30, 57, 135, 23);

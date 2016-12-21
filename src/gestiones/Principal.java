@@ -5,13 +5,25 @@
  */
 package gestiones;
 
-public class Principal {
+import ventanas.VInicio;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Principal {
+	
+	public static int CP;
+
+    public int getCP() {
+		return CP;
+	}
+
+	public static void setCP(int cP) {
+		CP = cP;
+	}
+
+	public static void main(String[] args) {
+    	VInicio ventanaInicio = new VInicio();
+    	ventanaInicio.setVisible(true);
     }
+    
+    
     
 }

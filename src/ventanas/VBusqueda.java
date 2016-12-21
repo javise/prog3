@@ -5,12 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 
 public class VBusqueda extends JFrame {
 
