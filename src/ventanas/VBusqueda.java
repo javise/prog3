@@ -1,10 +1,15 @@
 package ventanas;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import gestiones.Principal;
+
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JTextField;
@@ -59,6 +64,15 @@ public class VBusqueda extends JFrame {
 		
 		JButton btnAtras = new JButton("Atras");
 		panel.add(btnAtras, BorderLayout.WEST);
+		
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int cp = Principal.getCP();
+				VPrincipal vb = new VPrincipal(cp);
+				vb.setVisible(true);
+				dispose();
+			}
+		});
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);

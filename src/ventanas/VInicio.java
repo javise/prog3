@@ -67,7 +67,16 @@ public class VInicio extends JFrame {
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Principal.setCP(Integer.parseInt(textFieldCP.getText()));
+				try {
+					int cp = Integer.parseInt(textFieldCP.getText());
+					Principal.setCP(cp);
+					VPrincipal vp = new VPrincipal(cp);
+					vp.setVisible(true);
+					dispose();
+				} catch (NumberFormatException nfe){
+					DErrorCp decp = new DErrorCp();
+					decp.setVisible(true);
+				}
 			}
 		});
 		
@@ -81,7 +90,7 @@ public class VInicio extends JFrame {
 		gbc_lblInstruccion.gridy = 3;
 		contentPane.add(lblInstruccion, gbc_lblInstruccion);
 		
-		textFieldCP = new JTextField();
+		textFieldCP = new JTextField(5);
 		textFieldCP.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_textFieldCP = new GridBagConstraints();
 		gbc_textFieldCP.fill = GridBagConstraints.VERTICAL;

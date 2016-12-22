@@ -5,13 +5,16 @@
  */
 package gestiones;
 
+import java.util.ArrayList;
+
 import ventanas.VInicio;
 
 public class Principal {
 	
 	public static int CP;
+	//public ArrayList<Restaurante> listRestaurantes;
 
-    public int getCP() {
+    public static int getCP() {
 		return CP;
 	}
 
