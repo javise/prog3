@@ -66,27 +66,13 @@ public class VBusqueda extends JFrame {
 
 		btnAtras.setBounds(20, 33, 67, 23);
 		contentPane.add(btnAtras);
-		btnAtras.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VInicio newVInicio = new VInicio();
-				newVInicio.setVisible(true);
-				VBusqueda.this.dispose();
-				
-				
-			}
-		});
-		
-
 		panel.add(btnAtras, BorderLayout.WEST);
-
 		
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int cp = Principal.getCP();
-				VPrincipal vb = new VPrincipal(cp);
-				vb.setVisible(true);
+				VPrincipal newVPrincipal = new VPrincipal(cp);
+				newVPrincipal.setVisible(true);
 				dispose();
 			}
 		});

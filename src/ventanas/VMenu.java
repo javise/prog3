@@ -44,29 +44,22 @@ public class VMenu extends JFrame {
 		contentPane.setBorder(new EmptyBorder(8, 8, 8, 8));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+
+		JPanel panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 0, 5, 0));
+		contentPane.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new BorderLayout(10, 0));
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		panel.add(lblNombre, BorderLayout.CENTER);
 		
 		JButton btnPedido = new JButton("Pedido");
+		panel.add(btnPedido, BorderLayout.EAST);
 		btnPedido.setBounds(455, 11, 89, 40);
-		contentPane.add(btnPedido);
-		btnPedido.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VPedido newPedido = new VPedido();
-				newPedido.setVisible(true);
-				VMenu.this.dispose();
-				
-			}
-		});
-		
-		JTextPane txtpnDescripcion = new JTextPane();
-		txtpnDescripcion.setText("Descripcion");
-		txtpnDescripcion.setBounds(271, 279, 273, 58);
-		contentPane.add(txtpnDescripcion);
 		
 		JButton btnAtras = new JButton("Atras");
+		panel.add(btnAtras, BorderLayout.WEST);
 		btnAtras.setBounds(10, 11, 89, 23);
-		contentPane.add(btnAtras);
 		btnAtras.addActionListener(new ActionListener() {
 			
 			@Override
@@ -77,21 +70,16 @@ public class VMenu extends JFrame {
 				
 			}
 		});
-
-		JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(5, 0, 5, 0));
-		contentPane.add(panel, BorderLayout.NORTH);
-		panel.setLayout(new BorderLayout(10, 0));
-		
-		JButton btnAtras = new JButton("Atras");
-		panel.add(btnAtras, BorderLayout.WEST);
-
-		
-		JLabel lblNombre = new JLabel("Nombre");
-		panel.add(lblNombre, BorderLayout.CENTER);
-		
-		JButton btnPedido = new JButton("Pedido");
-		panel.add(btnPedido, BorderLayout.EAST);
+		btnPedido.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VPedido newPedido = new VPedido();
+				newPedido.setVisible(true);
+				VMenu.this.dispose();
+				
+			}
+		});
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
@@ -125,5 +113,6 @@ public class VMenu extends JFrame {
 		JTextPane txtpnDescripcion = new JTextPane();
 		panel_4.add(txtpnDescripcion);
 		txtpnDescripcion.setText("Descripcion");
+		txtpnDescripcion.setBounds(271, 279, 273, 58);
 	}
 }

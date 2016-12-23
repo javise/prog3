@@ -68,14 +68,6 @@ public class VInicio extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
-
-				VBusqueda newVBusqueda = new VBusqueda();
-				newVBusqueda.setVisible(true);
-				VInicio.this.dispose();
-				
-				
-				
-
 				try {
 					int cp = Integer.parseInt(textFieldCP.getText());
 					Principal.setCP(cp);
