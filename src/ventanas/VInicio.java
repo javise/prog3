@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import gestiones.Principal;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -65,12 +68,25 @@ public class VInicio extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
+
 				VBusqueda newVBusqueda = new VBusqueda();
 				newVBusqueda.setVisible(true);
 				VInicio.this.dispose();
 				
 				
 				
+
+				try {
+					int cp = Integer.parseInt(textFieldCP.getText());
+					Principal.setCP(cp);
+					VPrincipal vp = new VPrincipal(cp);
+					vp.setVisible(true);
+					dispose();
+				} catch (NumberFormatException nfe){
+					DErrorCp decp = new DErrorCp();
+					decp.setVisible(true);
+				}
+
 			}
 		});
 		
@@ -84,7 +100,7 @@ public class VInicio extends JFrame {
 		gbc_lblInstruccion.gridy = 3;
 		contentPane.add(lblInstruccion, gbc_lblInstruccion);
 		
-		textFieldCP = new JTextField();
+		textFieldCP = new JTextField(5);
 		textFieldCP.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_textFieldCP = new GridBagConstraints();
 		gbc_textFieldCP.fill = GridBagConstraints.VERTICAL;

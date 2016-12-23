@@ -7,10 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
+
+import gestiones.Principal;
+
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JTextField;
+import java.awt.BorderLayout;
 
 public class VBusqueda extends JFrame {
 
@@ -40,23 +43,27 @@ public class VBusqueda extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 503, 324);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblCP = new JLabel("*CP*");
-		lblCP.setBounds(10, 11, 82, 22);
-		contentPane.add(lblCP);
+		JPanel panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 0, 5, 0));
+		contentPane.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2, BorderLayout.CENTER);
+		
+		textField = new JTextField();
+		panel_2.add(textField);
+		textField.setColumns(25);
 		
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(384, 33, 82, 23);
-		contentPane.add(btnBuscar);
-		
-		JList listRest = new JList();
-		listRest.setBounds(24, 67, 442, 198);
-		contentPane.add(listRest);
+		panel_2.add(btnBuscar);
 		
 		JButton btnAtras = new JButton("Atras");
+
 		btnAtras.setBounds(20, 33, 67, 23);
 		contentPane.add(btnAtras);
 		btnAtras.addActionListener(new ActionListener() {
@@ -71,10 +78,24 @@ public class VBusqueda extends JFrame {
 			}
 		});
 		
+
+		panel.add(btnAtras, BorderLayout.WEST);
+
 		
-		textField = new JTextField();
-		textField.setBounds(114, 34, 260, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int cp = Principal.getCP();
+				VPrincipal vb = new VPrincipal(cp);
+				vb.setVisible(true);
+				dispose();
+			}
+		});
+		
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JList listRest = new JList();
+		panel_1.add(listRest);
 	}
 }

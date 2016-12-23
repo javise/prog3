@@ -44,6 +44,7 @@ public class VRestaurante extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+
 //		JButton btnPedido = new JButton("Pedido");
 //		btnPedido.setBounds(455, 39, 89, 40);
 //		contentPane.add(btnPedido);
@@ -57,6 +58,21 @@ public class VRestaurante extends JFrame {
 //				
 //			}
 //		});
+
+		//		JButton btnPedido = new JButton("Pedido");
+//		btnPedido.setBounds(455, 39, 89, 40);
+//		contentPane.add(btnPedido);
+//		btnPedido.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				VPedido newPedido = new VPedido();
+//				newPedido.setVisible(true);
+//				VRestaurante.this.dispose();
+//				
+//			}
+//		});
+
 		
 		JButton btnMenu = new JButton("VER MENU");
 		btnMenu.setBounds(10, 297, 534, 40);
@@ -73,16 +89,16 @@ public class VRestaurante extends JFrame {
 		
 		JTextPane txtpnDescripcion = new JTextPane();
 		txtpnDescripcion.setText("Descripcion");
-		txtpnDescripcion.setBounds(272, 125, 272, 161);
+		txtpnDescripcion.setBounds(272, 97, 272, 189);
 		contentPane.add(txtpnDescripcion);
 		
 		JLabel lblMapa = new JLabel("MAPA");
 		lblMapa.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMapa.setBounds(10, 125, 252, 161);
+		lblMapa.setBounds(10, 97, 252, 189);
 		contentPane.add(lblMapa);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 39, 368, 75);
+		panel.setBounds(92, 11, 353, 75);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -104,7 +120,7 @@ public class VRestaurante extends JFrame {
 		panel.add(lblCp);
 		
 		JButton btnAtras = new JButton("Atras");
-		btnAtras.setBounds(10, 11, 89, 23);
+		btnAtras.setBounds(15, 11, 67, 40);
 		contentPane.add(btnAtras);
 		btnAtras.addActionListener(new ActionListener() {
 			

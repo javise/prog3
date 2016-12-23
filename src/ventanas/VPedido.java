@@ -1,6 +1,5 @@
 package ventanas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -19,6 +18,7 @@ import javax.swing.SwingConstants;
 public class VPedido extends JFrame {
 
 	private JPanel contentPane;
+	private boolean domicilio = true; //f-local; t-domicilio
 
 	/**
 	 * Launch the application.
@@ -66,10 +66,22 @@ public class VPedido extends JFrame {
 		labelPedido.setBounds(119, 15, 166, 14);
 		contentPane.add(labelPedido);
 		
-		JButton btnRecogida = new JButton("RECOGER/DOMICILIO");
+		JButton btnRecogida = new JButton("DOMICILIO");
 		btnRecogida.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnRecogida.setBounds(295, 11, 89, 40);
 		contentPane.add(btnRecogida);
+		
+		btnRecogida.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(domicilio){
+					btnRecogida.setText("LOCAL");
+					domicilio = false;
+				}else{
+					btnRecogida.setText("DOMICILIO");
+					domicilio = true;
+				}
+			}
+		});
 		
 		JLabel lblResumen = new JLabel("RESUMEN:");
 		lblResumen.setBounds(30, 57, 135, 23);
@@ -96,7 +108,7 @@ public class VPedido extends JFrame {
 		contentPane.add(lblTotal);
 		
 		JButton btnPedir = new JButton("Pedir Ahora");
-		btnPedir.setBounds(162, 315, 89, 23);
+		btnPedir.setBounds(141, 315, 116, 23);
 		contentPane.add(btnPedir);
 		
 		JLabel lblPrecioSubtotal = new JLabel("€");

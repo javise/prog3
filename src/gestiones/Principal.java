@@ -5,13 +5,28 @@
  */
 package gestiones;
 
-public class Principal {
+import java.util.ArrayList;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+import ventanas.VInicio;
+
+public class Principal {
+	
+	public static int CP;
+	//public ArrayList<Restaurante> listRestaurantes;
+
+    public static int getCP() {
+		return CP;
+	}
+
+	public static void setCP(int cP) {
+		CP = cP;
+	}
+
+	public static void main(String[] args) {
+    	VInicio ventanaInicio = new VInicio();
+    	ventanaInicio.setVisible(true);
     }
+    
+    
     
 }
