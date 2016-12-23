@@ -42,7 +42,7 @@ public class VInicio extends JFrame {
 	public VInicio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 348, 300);
-		contentPane = new JPanel();
+		contentPane = new JPanel();			
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -63,7 +63,14 @@ public class VInicio extends JFrame {
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent arg0) {
+				VBusqueda newVBusqueda = new VBusqueda();
+				newVBusqueda.setVisible(true);
+				VInicio.this.dispose();
+				
+				
+				
 			}
 		});
 		

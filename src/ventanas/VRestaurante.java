@@ -2,6 +2,8 @@ package ventanas;
 
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -42,13 +44,32 @@ public class VRestaurante extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnPedido = new JButton("Pedido");
-		btnPedido.setBounds(455, 39, 89, 40);
-		contentPane.add(btnPedido);
+//		JButton btnPedido = new JButton("Pedido");
+//		btnPedido.setBounds(455, 39, 89, 40);
+//		contentPane.add(btnPedido);
+//		btnPedido.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				VPedido newPedido = new VPedido();
+//				newPedido.setVisible(true);
+//				VRestaurante.this.dispose();
+//				
+//			}
+//		});
 		
 		JButton btnMenu = new JButton("VER MENU");
 		btnMenu.setBounds(10, 297, 534, 40);
 		contentPane.add(btnMenu);
+		btnMenu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VMenu newVMenu = new VMenu();
+				newVMenu.setVisible(true);
+				VRestaurante.this.dispose();
+			}
+		});
 		
 		JTextPane txtpnDescripcion = new JTextPane();
 		txtpnDescripcion.setText("Descripcion");
@@ -85,5 +106,15 @@ public class VRestaurante extends JFrame {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setBounds(10, 11, 89, 23);
 		contentPane.add(btnAtras);
+		btnAtras.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VBusqueda newVBusqueda  = new VBusqueda();
+				newVBusqueda.setVisible(true);
+				VRestaurante.this.dispose();
+				
+			}
+		});
 	}
 }

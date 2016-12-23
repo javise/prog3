@@ -1,6 +1,8 @@
 package ventanas;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -57,6 +59,18 @@ public class VBusqueda extends JFrame {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setBounds(20, 33, 67, 23);
 		contentPane.add(btnAtras);
+		btnAtras.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VInicio newVInicio = new VInicio();
+				newVInicio.setVisible(true);
+				VBusqueda.this.dispose();
+				
+				
+			}
+		});
+		
 		
 		textField = new JTextField();
 		textField.setBounds(114, 34, 260, 20);

@@ -2,6 +2,8 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -46,6 +48,16 @@ public class VMenu extends JFrame {
 		JButton btnPedido = new JButton("Pedido");
 		btnPedido.setBounds(455, 11, 89, 40);
 		contentPane.add(btnPedido);
+		btnPedido.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VPedido newPedido = new VPedido();
+				newPedido.setVisible(true);
+				VMenu.this.dispose();
+				
+			}
+		});
 		
 		JTextPane txtpnDescripcion = new JTextPane();
 		txtpnDescripcion.setText("Descripcion");
@@ -55,6 +67,16 @@ public class VMenu extends JFrame {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setBounds(10, 11, 89, 23);
 		contentPane.add(btnAtras);
+		btnAtras.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VRestaurante newVRestaurante = new VRestaurante();
+				newVRestaurante.setVisible(true);
+				VMenu.this.dispose();
+				
+			}
+		});
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(118, 15, 304, 14);

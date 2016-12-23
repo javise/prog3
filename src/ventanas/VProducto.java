@@ -2,6 +2,8 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -49,6 +51,17 @@ public class VProducto extends JFrame {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setBounds(10, 11, 89, 23);
 		contentPane.add(btnAtras);
+		btnAtras.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VMenu newVMenu = new VMenu();
+				newVMenu.setVisible(true);
+				VProducto.this.dispose();
+				
+				
+			}
+		});
 		
 		JLabel lblNomProducto = new JLabel("NomProducto");
 		lblNomProducto.setBounds(123, 15, 231, 14);
