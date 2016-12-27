@@ -7,11 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import gestiones.Principal;
+import domain.Restaurante;
+import gestiones.*;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -31,7 +34,7 @@ public class VPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VPrincipal frame = new VPrincipal(0);
+					VPrincipal frame = new VPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +46,7 @@ public class VPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VPrincipal(int cp) {
+	public VPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 503, 340);
 		contentPane = new JPanel();
@@ -86,10 +89,10 @@ public class VPrincipal extends JFrame {
 		panel.add(panel_1, BorderLayout.NORTH);
 		panel_1.setLayout(new GridLayout(0, 3, 0, 0));
 		
-		JLabel lblCP = new JLabel(String.valueOf(cp));
+		JLabel lblCP = new JLabel(String.valueOf(Principal.CP));
 		panel_1.add(lblCP);
 		
-		JLabel lblNRest = new JLabel("n restaurantes encotrados");
+		JLabel lblNRest = new JLabel(Datos.restaurantesCercanos().size()+" restaurantes encotrados");
 		lblNRest.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(lblNRest);
 		
@@ -98,8 +101,17 @@ public class VPrincipal extends JFrame {
 		contentPane.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		JList listRest = new JList();
+		JList<Restaurante> listRest = new JList<Restaurante>(Datos.restaurantesCercanos());
 		listRest.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		panel_3.add(listRest);
+		
+		listRest.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		    	Principal.setSelectedRest(listRest.getSelectedValue());
+		    	VRestaurante vr = new VRestaurante();
+				vr.setVisible(true);
+				dispose();
+		    }
+		});
 	}
 }

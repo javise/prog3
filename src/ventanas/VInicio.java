@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import gestiones.Datos;
 import gestiones.Principal;
 
 import javax.swing.JLabel;
@@ -71,7 +72,7 @@ public class VInicio extends JFrame {
 				try {
 					int cp = Integer.parseInt(textFieldCP.getText());
 					Principal.setCP(cp);
-					VPrincipal vp = new VPrincipal(cp);
+					VPrincipal vp = new VPrincipal();
 					vp.setVisible(true);
 					dispose();
 				} catch (NumberFormatException nfe){
@@ -106,6 +107,8 @@ public class VInicio extends JFrame {
 		gbc_btnAceptar.gridx = 1;
 		gbc_btnAceptar.gridy = 5;
 		contentPane.add(btnAceptar, gbc_btnAceptar);
+		
+		Datos.datosEjemplo();
 	}
 
 }

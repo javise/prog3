@@ -5,21 +5,20 @@
  */
 package gestiones;
 
-import java.util.ArrayList;
-
+import domain.Restaurante;
 import ventanas.VInicio;
 
 public class Principal {
 	
+	public static Restaurante selectedRest;
 	public static int CP;
-	//public ArrayList<Restaurante> listRestaurantes;
-
-    public static int getCP() {
-		return CP;
-	}
-
+	
 	public static void setCP(int cP) {
 		CP = cP;
+	}
+	
+	public static void setSelectedRest(Restaurante r) {
+		selectedRest = r;
 	}
 
 	public static void main(String[] args) {

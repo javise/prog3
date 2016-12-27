@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import gestiones.Principal;
+
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
@@ -88,7 +91,7 @@ public class VRestaurante extends JFrame {
 		});
 		
 		JTextPane txtpnDescripcion = new JTextPane();
-		txtpnDescripcion.setText("Descripcion");
+		txtpnDescripcion.setText(Principal.selectedRest.getDesc());
 		txtpnDescripcion.setBounds(272, 97, 272, 189);
 		contentPane.add(txtpnDescripcion);
 		
@@ -107,15 +110,15 @@ public class VRestaurante extends JFrame {
 		lblImagen.setBounds(9, 11, 81, 42);
 		panel.add(lblImagen);
 		
-		JLabel lblNombre = new JLabel("Nombre");
+		JLabel lblNombre = new JLabel(Principal.selectedRest.getNombre());
 		lblNombre.setBounds(100, 11, 219, 14);
 		panel.add(lblNombre);
 		
-		JLabel lblDescriptitulo = new JLabel("DescripTitulo");
+		JLabel lblDescriptitulo = new JLabel(Principal.selectedRest.getResumen());
 		lblDescriptitulo.setBounds(100, 25, 219, 14);
 		panel.add(lblDescriptitulo);
 		
-		JLabel lblCp = new JLabel("CP");
+		JLabel lblCp = new JLabel(String.valueOf(Principal.selectedRest.getCodPost()));
 		lblCp.setBounds(101, 36, 218, 14);
 		panel.add(lblCp);
 		
@@ -126,9 +129,9 @@ public class VRestaurante extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VBusqueda newVBusqueda  = new VBusqueda();
-				newVBusqueda.setVisible(true);
-				VRestaurante.this.dispose();
+				VPrincipal vp = new VPrincipal();
+				vp.setVisible(true);
+				dispose();
 				
 			}
 		});

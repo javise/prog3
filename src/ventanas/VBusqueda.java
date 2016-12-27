@@ -8,8 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import gestiones.Principal;
-
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JTextField;
@@ -70,8 +68,7 @@ public class VBusqueda extends JFrame {
 		
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int cp = Principal.getCP();
-				VPrincipal newVPrincipal = new VPrincipal(cp);
+				VPrincipal newVPrincipal = new VPrincipal();
 				newVPrincipal.setVisible(true);
 				dispose();
 			}
