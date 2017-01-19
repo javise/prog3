@@ -1,17 +1,30 @@
 package domain;
 
+import gestiones.Principal;
+
 public class Producto {
+
 	String NombreProducto;
 	String ClaveProducto;
+	String descripcion;
 	double precio;
 	
-	public Producto(String nombreProducto, String claveProducto, double precio) {
+	public Producto(String nombreProducto, String claveProducto, double precio, String descripcion) {
 		super();
-		NombreProducto = nombreProducto;
-		ClaveProducto = claveProducto;
+		this.descripcion = descripcion;
+		this.NombreProducto = nombreProducto;
+		this.ClaveProducto = claveProducto;
 		this.precio = precio;
 	}
 	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	public String getNombreProducto() {
 		return NombreProducto;
 	}
@@ -34,6 +47,10 @@ public class Producto {
 	
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+	
+	public String toString() {
+		return NombreProducto;
 	}
 
 }

@@ -96,7 +96,8 @@ public class VRestaurante extends JFrame {
 		txtpnDescripcion.setBounds(272, 97, 272, 189);
 		contentPane.add(txtpnDescripcion);
 		
-		JLabel lblMapa = new JLabel("MAPA");
+		ImageIcon mapa = new ImageIcon("img/mapa"+Principal.selectedRest.getNombre()+".png");
+		JLabel lblMapa = new JLabel(mapa);
 		lblMapa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMapa.setBounds(10, 97, 252, 189);
 		contentPane.add(lblMapa);

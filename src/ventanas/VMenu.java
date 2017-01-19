@@ -4,15 +4,24 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import domain.Producto;
+import gestiones.Datos;
+import gestiones.Principal;
+
 import javax.swing.JButton;
 import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import java.awt.GridLayout;
+import java.awt.FlowLayout;
 
 public class VMenu extends JFrame {
 
@@ -100,19 +109,43 @@ public class VMenu extends JFrame {
 		panel_1.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new GridLayout(0, 2, 5, 0));
 		
-		JList listCat = new JList();
+		JTextPane txtpnDescripcion = new JTextPane();
+		txtpnDescripcion.setText("Descripcion");
+		txtpnDescripcion.setBounds(271, 279, 273, 58);
+		
+		Datos.leerMenu();
+		
+		JList<String> listCat = new JList<String>(Principal.selectedRest.getMenu().categorias());
+		listCat.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		panel_3.add(listCat);
+		
+		JList<Producto> listProd = new JList<Producto>();
+		listProd.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		listCat.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		    	listProd.setModel(Principal.selectedRest.getMenu().productosPorCategoria(listCat.getSelectedValue()));
+		    }
+		});
+		
+		listProd.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		    	txtpnDescripcion.setText(listProd.getSelectedValue().getDescripcion());
+		    }
+		});
 		
 		JPanel panel_4 = new JPanel();
 		panel_3.add(panel_4);
 		panel_4.setLayout(new GridLayout(0, 1, 0, 5));
 		
-		JList listProd = new JList();
 		panel_4.add(listProd);
-		
-		JTextPane txtpnDescripcion = new JTextPane();
 		panel_4.add(txtpnDescripcion);
-		txtpnDescripcion.setText("Descripcion");
-		txtpnDescripcion.setBounds(271, 279, 273, 58);
+		
+		JPanel panel_5 = new JPanel();
+		contentPane.add(panel_5, BorderLayout.SOUTH);
+		panel_5.setLayout(new FlowLayout(FlowLayout.RIGHT, 75, 5));
+		
+		JButton btnAnyadir = new JButton("A\u00F1adir al pedido");
+		panel_5.add(btnAnyadir);
 	}
 }
