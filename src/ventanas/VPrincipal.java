@@ -22,6 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.SwingConstants;
 import javax.swing.ListSelectionModel;
+import java.awt.Font;
 
 public class VPrincipal extends JFrame {
 
@@ -49,7 +50,7 @@ public class VPrincipal extends JFrame {
 	 */
 	public VPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 503, 340);
+		setBounds(100, 100, 525, 340);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 10, 10, 10));
 		setContentPane(contentPane);
@@ -104,6 +105,7 @@ public class VPrincipal extends JFrame {
 		panel_1.add(lblCP);
 		
 		JLabel lblNRest = new JLabel(Datos.restaurantesCercanos().size()+" restaurantes encotrados");
+		lblNRest.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNRest.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(lblNRest);
 		

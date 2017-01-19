@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import gestiones.Principal;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
@@ -105,7 +106,8 @@ public class VRestaurante extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblImagen = new JLabel("IMAGEN");
+		ImageIcon imagen = new ImageIcon("img/"+Principal.selectedRest.getNombre()+".png");
+		JLabel lblImagen = new JLabel(imagen);
 		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImagen.setBounds(9, 11, 81, 42);
 		panel.add(lblImagen);
