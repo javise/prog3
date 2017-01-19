@@ -7,7 +7,7 @@ public class Restaurante {
 	int idRestaurante;
 	int CodPost;
 	String nombre;
-	String resumen;
+	String tipo;
 	String desc;
 	Menu menu;
 	HashMap< Cliente, Pedido> Clientepedido; 
@@ -24,21 +24,21 @@ public class Restaurante {
 		this.nombre = nombre;
 	}
 	
-	public Restaurante(int idRestaurante, int CodPost, String nombre, Menu menu, String resumen, String desc) {
+	public Restaurante(int idRestaurante, int CodPost, String nombre, Menu menu, String tipo, String desc) {
 		super();
 		this.idRestaurante = idRestaurante;
 		this.CodPost = CodPost;
 		this.nombre = nombre;
 		this.menu = menu;
-		this.resumen = resumen;
+		this.tipo = tipo;
 		this.desc = desc;
 	}
 	
-	public String getResumen() {
-		return resumen;
+	public String getTipo() {
+		return tipo;
 	}
-	public void setResumen(String resumen) {
-		this.resumen = resumen;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	public String getDesc() {
 		return desc;

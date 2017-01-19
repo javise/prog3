@@ -26,6 +26,7 @@ import javax.swing.ListSelectionModel;
 public class VPrincipal extends JFrame {
 
 	private JPanel contentPane;
+	private JList<Restaurante> listRest;
 
 	/**
 	 * Launch the application.
@@ -69,8 +70,18 @@ public class VPrincipal extends JFrame {
 		JLabel lblTipo = new JLabel("TIPO");
 		panel_4.add(lblTipo);
 		
-		JComboBox comboBoxTipos = new JComboBox();
+		String[] tiposStrings = { "Todos", "Americano", "Sushi", "Kebab", "Italiano", "Chino", "Pizza"};
+		JComboBox<String> comboBoxTipos = new JComboBox<String>(tiposStrings);
 		panel_4.add(comboBoxTipos);
+		comboBoxTipos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if((String)comboBoxTipos.getSelectedItem()=="Todos"){
+					listRest.setModel(Datos.tipoTodos());
+				}else{
+					listRest.setModel(Datos.restaurantesPorTipo((String)comboBoxTipos.getSelectedItem()));
+				}
+			}
+		});
 		
 		JButton btnBusqueda = new JButton("Busqueda");
 		btnBusqueda.setHorizontalAlignment(SwingConstants.LEFT);
@@ -101,7 +112,7 @@ public class VPrincipal extends JFrame {
 		contentPane.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		JList<Restaurante> listRest = new JList<Restaurante>(Datos.restaurantesCercanos());
+		listRest = new JList<Restaurante>(Datos.restaurantesCercanos());
 		listRest.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		panel_3.add(listRest);
 		

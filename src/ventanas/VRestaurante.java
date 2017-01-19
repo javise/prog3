@@ -114,7 +114,7 @@ public class VRestaurante extends JFrame {
 		lblNombre.setBounds(100, 11, 219, 14);
 		panel.add(lblNombre);
 		
-		JLabel lblDescriptitulo = new JLabel(Principal.selectedRest.getResumen());
+		JLabel lblDescriptitulo = new JLabel(Principal.selectedRest.getTipo());
 		lblDescriptitulo.setBounds(100, 25, 219, 14);
 		panel.add(lblDescriptitulo);
 		
