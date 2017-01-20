@@ -29,7 +29,7 @@ public class VRestaurante extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VRestaurante frame = new VRestaurante(true);
+					VRestaurante frame = new VRestaurante(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,11 +41,11 @@ public class VRestaurante extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	//La variable vieneDePricipal define que ventana le precede. Si viene de VPricipal es true, si viene de VMenu es false.
-	//Cunado viene de la ventana VMenu es imposible que haya habido un cambio de restaurante asi que se conserva el pedido.
+	//La variable deDondeViene define que ventana le precede.2-VBusqueda; 1-VPricipal; 0-VMenu.
+	//Cuando viene de la ventana VMenu es imposible que haya habido un cambio de restaurante asi que se conserva el pedido.
 	//El pedido es para un unico restaurante, si se sale de ese restaurante el pedido se reinicia.
-	public VRestaurante(boolean vieneDePricipal) {
-		if(vieneDePricipal){
+	public VRestaurante(int deDondeViene) {
+		if(deDondeViene!=0){
 			if(Principal.pedidoEnCurso == null){
 				Principal.pedidoEnCurso = new Pedido();
 			}else{
@@ -150,10 +150,15 @@ public class VRestaurante extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VPrincipal vp = new VPrincipal();
-				vp.setVisible(true);
-				dispose();
-				
+				if(deDondeViene==2){
+					VBusqueda vb = new VBusqueda();
+					vb.setVisible(true);
+					dispose();
+				}else{
+					VPrincipal vp = new VPrincipal();
+					vp.setVisible(true);
+					dispose();
+				}
 			}
 		});
 	}

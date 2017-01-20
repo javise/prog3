@@ -1,6 +1,8 @@
 package ventanas;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -52,6 +54,14 @@ public class VInfoUsuario extends JFrame {
 		JButton button = new JButton("Atras");
 		button.setBounds(10, 11, 89, 23);
 		contentPane.add(button);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VPedido newPedido = new VPedido();
+				newPedido.setVisible(true);
+				dispose();
+				
+			}
+		});
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(36, 76, 63, 14);

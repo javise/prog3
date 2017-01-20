@@ -27,6 +27,7 @@ import java.awt.Font;
 public class VMenu extends JFrame {
 
 	private JPanel contentPane;
+	private JLabel lblContador;
 
 	/**
 	 * Launch the application.
@@ -70,7 +71,7 @@ public class VMenu extends JFrame {
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6, BorderLayout.EAST);
 		
-		JLabel lblContador = new JLabel(Integer.toString(Principal.pedidoEnCurso.getPedido().size()));
+		lblContador = new JLabel(Integer.toString(Principal.pedidoEnCurso.getPedido().size()));
 		panel_6.add(lblContador);
 		
 		JButton btnPedido = new JButton("Pedido");
@@ -86,7 +87,7 @@ public class VMenu extends JFrame {
 		});
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VRestaurante newVRestaurante = new VRestaurante(false);
+				VRestaurante newVRestaurante = new VRestaurante(0);
 				newVRestaurante.setVisible(true);
 				VMenu.this.dispose();
 				
@@ -144,8 +145,7 @@ public class VMenu extends JFrame {
 		    	try{
 			    	txtpnDescripcion.setText(listProd.getSelectedValue().getDescripcion());
 			    	if (evt.getClickCount() == 2) {
-			    		Principal.pedidoEnCurso.anyadirProducto(listProd.getSelectedValue());
-				    	lblContador.setText(Integer.toString(Principal.pedidoEnCurso.getPedido().size()));
+			    		productoSeleccionado(listProd, lblContador);
 			    	}
 		    	}catch(NullPointerException npe){}
 		    }
@@ -168,14 +168,26 @@ public class VMenu extends JFrame {
 		btnAnyadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(listProd.getSelectedValue()!=null){
-					Principal.pedidoEnCurso.anyadirProducto(listProd.getSelectedValue());
-					lblContador.setText(Integer.toString(Principal.pedidoEnCurso.getPedido().size()));
+					productoSeleccionado(listProd, lblContador);
 				}else{
 					DError decp = new DError("Seleccione un producto");
 					decp.setVisible(true);
 				}
 			}
 		});
-		
+	}
+	
+	private void productoSeleccionado(JList<Producto> listP, JLabel lblC){
+		if(listP.getSelectedValue().isElegible()){
+			DProducto vpr = new DProducto(listP.getSelectedValue(), this);
+			vpr.setVisible(true);
+		}else{
+			Principal.pedidoEnCurso.anyadirProducto(listP.getSelectedValue());
+			lblC.setText(Integer.toString(Principal.pedidoEnCurso.getPedido().size()));
+		}
+	}
+	
+	public void actualizarContador(){
+		lblContador.setText(Integer.toString(Principal.pedidoEnCurso.getPedido().size()));
 	}
 }

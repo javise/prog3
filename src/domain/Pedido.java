@@ -28,14 +28,12 @@ public class Pedido {
 		this.pedido.remove(p);
 		this.cantidad = this.cantidad - p.getPrecio();
 	}
-	/*
 	public double calcularCuenta(){
 		cantidad = 0.0;
 		for(int i=0; i<pedido.size(); i++)
 			this.cantidad= this.cantidad + pedido.get(i).precio;
 		return cantidad;
 	}
-	*/
 	public ArrayList<Producto> getPedido() {
 		return pedido;
 	}

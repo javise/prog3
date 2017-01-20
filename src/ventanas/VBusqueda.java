@@ -3,10 +3,16 @@ package ventanas;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import domain.Restaurante;
+import gestiones.Datos;
+import gestiones.Principal;
 
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -16,7 +22,6 @@ import java.awt.BorderLayout;
 public class VBusqueda extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -53,7 +58,7 @@ public class VBusqueda extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.CENTER);
 		
-		textField = new JTextField();
+		JTextField textField = new JTextField();
 		panel_2.add(textField);
 		textField.setColumns(25);
 		
@@ -78,7 +83,24 @@ public class VBusqueda extends JFrame {
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JList listRest = new JList();
+		JList<Restaurante> listRest = new JList<Restaurante>();
 		panel_1.add(listRest);
+		
+		listRest.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		    	try{
+		    		Principal.setSelectedRest(listRest.getSelectedValue());
+			    	VRestaurante vr = new VRestaurante(2);
+					vr.setVisible(true);
+					dispose();
+		    	}catch(NullPointerException npe){}
+		    }
+		});
+		
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				listRest.setModel(Datos.buscarCoincidencias(textField.getText()));
+			}
+		});
 	}
 }

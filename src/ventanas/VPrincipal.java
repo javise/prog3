@@ -27,8 +27,6 @@ import java.awt.Font;
 public class VPrincipal extends JFrame {
 
 	private JPanel contentPane;
-	private JList<Restaurante> listRest;
-
 	/**
 	 * Launch the application.
 	 */
@@ -74,15 +72,6 @@ public class VPrincipal extends JFrame {
 		String[] tiposStrings = { "Todos", "Americano", "Sushi", "Kebab", "Italiano", "Chino", "Pizza"};
 		JComboBox<String> comboBoxTipos = new JComboBox<String>(tiposStrings);
 		panel_4.add(comboBoxTipos);
-		comboBoxTipos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if((String)comboBoxTipos.getSelectedItem()=="Todos"){
-					listRest.setModel(Datos.tipoTodos());
-				}else{
-					listRest.setModel(Datos.restaurantesPorTipo((String)comboBoxTipos.getSelectedItem()));
-				}
-			}
-		});
 		
 		JButton btnBusqueda = new JButton("Busqueda");
 		btnBusqueda.setHorizontalAlignment(SwingConstants.LEFT);
@@ -114,17 +103,30 @@ public class VPrincipal extends JFrame {
 		contentPane.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		listRest = new JList<Restaurante>(Datos.restaurantesCercanos());
+		JList<Restaurante> listRest = new JList<Restaurante>(Datos.restaurantesCercanos());
 		listRest.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		panel_3.add(listRest);
 		
 		listRest.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
-		    	Principal.setSelectedRest(listRest.getSelectedValue());
-		    	VRestaurante vr = new VRestaurante(true);
-				vr.setVisible(true);
-				dispose();
+		    	try{
+		    		Principal.setSelectedRest(listRest.getSelectedValue());
+			    	VRestaurante vr = new VRestaurante(1);
+					vr.setVisible(true);
+					dispose();
+		    	}catch(NullPointerException npe){}
 		    }
+		});
+		
+		comboBoxTipos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if((String)comboBoxTipos.getSelectedItem()=="Todos"){
+					listRest.setModel(Datos.tipoTodos());
+				}else{
+					listRest.setModel(Datos.restaurantesPorTipo((String)comboBoxTipos.getSelectedItem()));
+				}
+				lblNRest.setText(listRest.getModel().getSize()+" restaurantes encotrados");
+			}
 		});
 	}
 }

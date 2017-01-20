@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+
 import gestiones.Principal;
 
 public class Producto {
@@ -7,16 +9,47 @@ public class Producto {
 	String NombreProducto;
 	String ClaveProducto;
 	String descripcion;
+	boolean elegible;
+	String opEscogida="";
+	ArrayList<String> opciones;
 	double precio;
 	
 	public Producto(String nombreProducto, String claveProducto, double precio, String descripcion) {
 		super();
+		this.elegible = false;
 		this.descripcion = descripcion;
 		this.NombreProducto = nombreProducto;
 		this.ClaveProducto = claveProducto;
 		this.precio = precio;
 	}
 	
+	//Producto con opciones
+	public Producto(String nombreProducto, String claveProducto, double precio, String descripcion, ArrayList<String> opciones) {
+		super();
+		this.opciones = opciones;
+		this.elegible = true;
+		this.descripcion = descripcion;
+		this.NombreProducto = nombreProducto;
+		this.ClaveProducto = claveProducto;
+		this.precio = precio;
+	}
+	
+	public String getOpEscogida() {
+		return opEscogida;
+	}
+
+	public void setOpEscogida(String opEscogida) {
+		this.opEscogida = opEscogida;
+	}
+
+	public boolean isElegible() {
+		return elegible;
+	}
+
+	public ArrayList<String> getOpciones() {
+		return opciones;
+	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -50,7 +83,7 @@ public class Producto {
 	}
 	
 	public String toString() {
-		return NombreProducto;
+		return NombreProducto+" "+opEscogida;
 	}
 
 }

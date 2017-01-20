@@ -58,14 +58,10 @@ public class VPedido extends JFrame {
 		btnAtras.setBounds(10, 11, 89, 23);
 		contentPane.add(btnAtras);
 		btnAtras.addActionListener(new ActionListener() {
-			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMenu newVMenu = new VMenu();
 				newVMenu.setVisible(true);
 				VPedido.this.dispose();
-				
-				
 			}
 		});
 		
@@ -118,6 +114,13 @@ public class VPedido extends JFrame {
 		JButton btnPedir = new JButton("Pedir Ahora");
 		btnPedir.setBounds(151, 296, 116, 23);
 		contentPane.add(btnPedir);
+		btnPedir.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VInfoUsuario viu = new VInfoUsuario();
+				viu.setVisible(true);
+				VPedido.this.dispose();
+			}
+		});
 		
 		JLabel lblPrecioSubtotal = new JLabel(Double.toString(Principal.pedidoEnCurso.getCantidad())+" €");
 		lblPrecioSubtotal.setHorizontalAlignment(SwingConstants.RIGHT);

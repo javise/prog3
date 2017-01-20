@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.DefaultListModel;
 
@@ -45,7 +46,7 @@ public class Datos {
 			m.anyadirProducto(new Producto("pizza jamon", null, 7, "pizza jamon descripcion"), "Pizza");
 			m.anyadirProducto(new Producto("pizza 4 quesos", null, 8, "pizza 4 quesos descripcion"), "Pizza");
 			m.anyadirProducto(new Producto("pizza carbonara", null, 8, "pizza carbonara descripcion"), "Pizza");
-			m.anyadirProducto(new Producto("hamburguesa", null, 5, "hamburguesa con queso"), "Burguer");
+			m.anyadirProducto(new Producto("hamburguesa", null, 5, "hamburguesa con queso", new ArrayList<String>(Arrays.asList("Vacuno", "Pollo", "Vegana"))), "Burguer");
 			m.anyadirProducto(new Producto("sandwich vegetal", null, 3, "sandwich de tomate, lechuga y huevo"), "Sandwich");
 			m.anyadirProducto(new Producto("sandwich mixto", null, 3, "sandwich de jamon y queso"), "Sandwich");
 			Principal.selectedRest.setMenu(m);
@@ -60,6 +61,16 @@ public class Datos {
 			}
 		}
 		return restCercanos;
+	}
+	
+	public static DefaultListModel<Restaurante> buscarCoincidencias(String trozo) {
+		DefaultListModel<Restaurante> restCoinciden = new DefaultListModel<Restaurante>();
+		for(int i=0; i<restCercanos.size(); i++) {
+			if(restCercanos.getElementAt(i).getNombre().indexOf(trozo) != -1){
+				restCoinciden.addElement(restCercanos.get(i));
+			}
+		}
+		return restCoinciden;
 	}
 	
 	public static DefaultListModel<Restaurante> tipoTodos() {
