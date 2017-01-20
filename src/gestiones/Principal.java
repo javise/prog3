@@ -5,12 +5,14 @@
  */
 package gestiones;
 
+import domain.Pedido;
 import domain.Restaurante;
 import ventanas.VInicio;
 
 public class Principal {
 	
 	public static Restaurante selectedRest;
+	public static Pedido pedidoEnCurso;
 	public static int CP;
 	
 	public static void setCP(int cP) {

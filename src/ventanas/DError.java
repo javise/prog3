@@ -16,7 +16,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DErrorCp extends JDialog {
+public class DError extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -25,7 +25,7 @@ public class DErrorCp extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			DErrorCp dialog = new DErrorCp();
+			DError dialog = new DError("Error");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,7 +36,7 @@ public class DErrorCp extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DErrorCp() {
+	public DError(String mensaje) {
 		setBounds(100, 100, 297, 131);
 		getContentPane().setLayout(new BorderLayout());
 		FlowLayout fl_contentPanel = new FlowLayout();
@@ -44,7 +44,7 @@ public class DErrorCp extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
-			JLabel lblMensaje = new JLabel("Error: Introduzca su c\u00F3digo postal");
+			JLabel lblMensaje = new JLabel(mensaje);
 			lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			contentPanel.add(lblMensaje);
 		}

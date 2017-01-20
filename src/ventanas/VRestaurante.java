@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import domain.Pedido;
 import gestiones.Principal;
 
 import javax.swing.ImageIcon;
@@ -28,7 +29,7 @@ public class VRestaurante extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VRestaurante frame = new VRestaurante();
+					VRestaurante frame = new VRestaurante(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +41,18 @@ public class VRestaurante extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VRestaurante() {
+	//La variable vieneDePricipal define que ventana le precede. Si viene de VPricipal es true, si viene de VMenu es false.
+	//Cunado viene de la ventana VMenu es imposible que haya habido un cambio de restaurante asi que se conserva el pedido.
+	//El pedido es para un unico restaurante, si se sale de ese restaurante el pedido se reinicia.
+	public VRestaurante(boolean vieneDePricipal) {
+		if(vieneDePricipal){
+			if(Principal.pedidoEnCurso == null){
+				Principal.pedidoEnCurso = new Pedido();
+			}else{
+				Principal.pedidoEnCurso.nuevoPedido();
+			}
+		}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 570, 386);
 		contentPane = new JPanel();
@@ -85,9 +97,15 @@ public class VRestaurante extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VMenu newVMenu = new VMenu();
-				newVMenu.setVisible(true);
-				VRestaurante.this.dispose();
+				try{
+					VMenu newVMenu = new VMenu();
+					newVMenu.setVisible(true);
+					VRestaurante.this.dispose();
+				}catch(NullPointerException npe){
+					DError decp = new DError("Lo sentimos, este menú no está disponible");
+					decp.setVisible(true);
+				}
+				
 			}
 		});
 		

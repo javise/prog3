@@ -6,6 +6,7 @@ public class Restaurante {
 	
 	int idRestaurante;
 	int CodPost;
+	double gastosEnvio;
 	String nombre;
 	String tipo;
 	String desc;
@@ -24,8 +25,9 @@ public class Restaurante {
 		this.nombre = nombre;
 	}
 	
-	public Restaurante(int idRestaurante, int CodPost, String nombre, Menu menu, String tipo, String desc) {
+	public Restaurante(int idRestaurante, int CodPost, String nombre, Menu menu, String tipo, String desc, double gastosEnvio) {
 		super();
+		this.gastosEnvio = gastosEnvio;
 		this.idRestaurante = idRestaurante;
 		this.CodPost = CodPost;
 		this.nombre = nombre;
@@ -33,7 +35,12 @@ public class Restaurante {
 		this.tipo = tipo;
 		this.desc = desc;
 	}
-	
+	public double getGastosEnvio() {
+		return gastosEnvio;
+	}
+	public void setGastosEnvio(double gastosEnvio) {
+		this.gastosEnvio = gastosEnvio;
+	}
 	public String getTipo() {
 		return tipo;
 	}

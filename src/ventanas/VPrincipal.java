@@ -121,7 +121,7 @@ public class VPrincipal extends JFrame {
 		listRest.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
 		    	Principal.setSelectedRest(listRest.getSelectedValue());
-		    	VRestaurante vr = new VRestaurante();
+		    	VRestaurante vr = new VRestaurante(true);
 				vr.setVisible(true);
 				dispose();
 		    }

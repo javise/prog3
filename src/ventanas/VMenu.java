@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 public class VMenu extends JFrame {
 
@@ -62,29 +63,31 @@ public class VMenu extends JFrame {
 		JLabel lblNombre = new JLabel("Nombre");
 		panel.add(lblNombre, BorderLayout.CENTER);
 		
-		JButton btnPedido = new JButton("Pedido");
-		panel.add(btnPedido, BorderLayout.EAST);
-		btnPedido.setBounds(455, 11, 89, 40);
-		
 		JButton btnAtras = new JButton("Atras");
 		panel.add(btnAtras, BorderLayout.WEST);
 		btnAtras.setBounds(10, 11, 89, 23);
-		btnAtras.addActionListener(new ActionListener() {
-			
-			@Override
+		
+		JPanel panel_6 = new JPanel();
+		panel.add(panel_6, BorderLayout.EAST);
+		
+		JLabel lblContador = new JLabel(Integer.toString(Principal.pedidoEnCurso.getPedido().size()));
+		panel_6.add(lblContador);
+		
+		JButton btnPedido = new JButton("Pedido");
+		panel_6.add(btnPedido);
+		btnPedido.setBounds(455, 11, 89, 40);
+		btnPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VRestaurante newVRestaurante = new VRestaurante();
-				newVRestaurante.setVisible(true);
+				VPedido newPedido = new VPedido();
+				newPedido.setVisible(true);
 				VMenu.this.dispose();
 				
 			}
 		});
-		btnPedido.addActionListener(new ActionListener() {
-			
-			@Override
+		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VPedido newPedido = new VPedido();
-				newPedido.setVisible(true);
+				VRestaurante newVRestaurante = new VRestaurante(false);
+				newVRestaurante.setVisible(true);
 				VMenu.this.dispose();
 				
 			}
@@ -102,8 +105,16 @@ public class VMenu extends JFrame {
 		JLabel lblCategorias = new JLabel("CATEGORIAS");
 		panel_2.add(lblCategorias);
 		
+		JPanel panel_7 = new JPanel();
+		panel_2.add(panel_7);
+		panel_7.setLayout(new BorderLayout(0, 0));
+		
 		JLabel lblProductos = new JLabel("PRODUCTOS");
-		panel_2.add(lblProductos);
+		panel_7.add(lblProductos, BorderLayout.WEST);
+		
+		JLabel lblMensaje = new JLabel("Doble click para añadir");
+		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		panel_7.add(lblMensaje, BorderLayout.EAST);
 		
 		JPanel panel_3 = new JPanel();
 		panel_1.add(panel_3, BorderLayout.CENTER);
@@ -113,7 +124,7 @@ public class VMenu extends JFrame {
 		txtpnDescripcion.setText("Descripcion");
 		txtpnDescripcion.setBounds(271, 279, 273, 58);
 		
-		Datos.leerMenu();
+		Datos.leerMenu(Principal.selectedRest.getIdRestaurante());
 		
 		JList<String> listCat = new JList<String>(Principal.selectedRest.getMenu().categorias());
 		listCat.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -130,9 +141,16 @@ public class VMenu extends JFrame {
 		
 		listProd.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
-		    	txtpnDescripcion.setText(listProd.getSelectedValue().getDescripcion());
+		    	try{
+			    	txtpnDescripcion.setText(listProd.getSelectedValue().getDescripcion());
+			    	if (evt.getClickCount() == 2) {
+			    		Principal.pedidoEnCurso.anyadirProducto(listProd.getSelectedValue());
+				    	lblContador.setText(Integer.toString(Principal.pedidoEnCurso.getPedido().size()));
+			    	}
+		    	}catch(NullPointerException npe){}
 		    }
 		});
+		
 		
 		JPanel panel_4 = new JPanel();
 		panel_3.add(panel_4);
@@ -145,7 +163,19 @@ public class VMenu extends JFrame {
 		contentPane.add(panel_5, BorderLayout.SOUTH);
 		panel_5.setLayout(new FlowLayout(FlowLayout.RIGHT, 75, 5));
 		
-		JButton btnAnyadir = new JButton("A\u00F1adir al pedido");
+		JButton btnAnyadir = new JButton("Añadir al pedido");
 		panel_5.add(btnAnyadir);
+		btnAnyadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(listProd.getSelectedValue()!=null){
+					Principal.pedidoEnCurso.anyadirProducto(listProd.getSelectedValue());
+					lblContador.setText(Integer.toString(Principal.pedidoEnCurso.getPedido().size()));
+				}else{
+					DError decp = new DError("Seleccione un producto");
+					decp.setVisible(true);
+				}
+			}
+		});
+		
 	}
 }

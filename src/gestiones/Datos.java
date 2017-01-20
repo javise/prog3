@@ -20,33 +20,36 @@ public class Datos {
 	
 	public static void datosEjemplo(){ //Utilizado en el constructor de VInicio para trabajar con datos de ejemplo
 		String d = "Un restaurante nacido el 1985 con exquisitos productos de primera calidad y el puro sabor americano";
-		restaurantes.add(new Restaurante(1, 0, "r2", null, null, null));
-		restaurantes.add(new Restaurante(2, 0, "r3", null, null, null));
-		restaurantes.add(new Restaurante(3, 0, "r4", null, null, null));
-		restaurantes.add(new Restaurante(4, 1, "Ribs", null, "Americano", d));
-		restaurantes.add(new Restaurante(0, 1, "Foster's Hollywood", null, "Americano", ""));
-		restaurantes.add(new Restaurante(5, 1, "New York Dinner", null, "Americano", ""));
-		restaurantes.add(new Restaurante(6, 1, "Crazy Horse", null, "Americano", ""));
-		restaurantes.add(new Restaurante(7, 1, "Florida", null, "Americano", ""));
-		restaurantes.add(new Restaurante(8, 1, "Deluxe", null, "Americano", ""));
-		restaurantes.add(new Restaurante(9, 1, "Don Angelo", null, "Italiano", ""));
-		restaurantes.add(new Restaurante(10, 1, " La Tagliatella", null, "Italiano", ""));
-		restaurantes.add(new Restaurante(11, 1, "Sumo", null, "Sushi", ""));
-		restaurantes.add(new Restaurante(12, 1, "Sushi Artist", null, "Sushi", ""));
-		restaurantes.add(new Restaurante(13, 1, "Miu", null, "Sushi", ""));
+		restaurantes.add(new Restaurante(1, 0, "r2", null, null, null, 0));
+		restaurantes.add(new Restaurante(2, 0, "r3", null, null, null, 0));
+		restaurantes.add(new Restaurante(3, 0, "r4", null, null, null, 0));
+		restaurantes.add(new Restaurante(4, 1, "Ribs", null, "Americano", d, 2.5));
+		restaurantes.add(new Restaurante(0, 1, "Foster's Hollywood", null, "Americano", "", 0));
+		restaurantes.add(new Restaurante(5, 1, "New York Dinner", null, "Americano", "", 0));
+		restaurantes.add(new Restaurante(6, 1, "Crazy Horse", null, "Americano", "", 0));
+		restaurantes.add(new Restaurante(7, 1, "Florida", null, "Americano", "", 0));
+		restaurantes.add(new Restaurante(8, 1, "Deluxe", null, "Americano", "", 0));
+		restaurantes.add(new Restaurante(9, 1, "Don Angelo", null, "Italiano", "", 0));
+		restaurantes.add(new Restaurante(10, 1, " La Tagliatella", null, "Italiano", "", 0));
+		restaurantes.add(new Restaurante(11, 1, "Sumo", null, "Sushi", "", 0));
+		restaurantes.add(new Restaurante(12, 1, "Sushi Artist", null, "Sushi", "", 0));
+		restaurantes.add(new Restaurante(13, 1, "Miu", null, "Sushi", "", 0));
 	}
 	
 	//Imita la toma de datos de la BD considerando que los datos de los menus son demasiados para leerlos desde
 	//el principio y se piden solo los datos del menu necesitado en el constructor de la ventana VMenu
-	public static void leerMenu() {
-		Menu m = new Menu();
-		m.anyadirProducto(new Producto("pizza jamon", null, 7, "pizza jamon descripcion"), "Pizza");
-		m.anyadirProducto(new Producto("pizza 4 quesos", null, 8, "pizza 4 quesos descripcion"), "Pizza");
-		m.anyadirProducto(new Producto("pizza carbonara", null, 8, "pizza carbonara descripcion"), "Pizza");
-		m.anyadirProducto(new Producto("hamburguesa", null, 5, "hamburguesa con queso"), "Burguer");
-		m.anyadirProducto(new Producto("sandwich vegetal", null, 3, "sandwich de tomate, lechuga y huevo"), "Sandwich");
-		m.anyadirProducto(new Producto("sandwich mixto", null, 3, "sandwich de jamon y queso"), "Sandwich");
-		Principal.selectedRest.setMenu(m);
+	public static void leerMenu(int idR) {
+		switch(idR){
+		case 4:
+			Menu m = new Menu();
+			m.anyadirProducto(new Producto("pizza jamon", null, 7, "pizza jamon descripcion"), "Pizza");
+			m.anyadirProducto(new Producto("pizza 4 quesos", null, 8, "pizza 4 quesos descripcion"), "Pizza");
+			m.anyadirProducto(new Producto("pizza carbonara", null, 8, "pizza carbonara descripcion"), "Pizza");
+			m.anyadirProducto(new Producto("hamburguesa", null, 5, "hamburguesa con queso"), "Burguer");
+			m.anyadirProducto(new Producto("sandwich vegetal", null, 3, "sandwich de tomate, lechuga y huevo"), "Sandwich");
+			m.anyadirProducto(new Producto("sandwich mixto", null, 3, "sandwich de jamon y queso"), "Sandwich");
+			Principal.selectedRest.setMenu(m);
+		}
 	}
 	
 	public static DefaultListModel<Restaurante> restaurantesCercanos() {

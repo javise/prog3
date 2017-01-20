@@ -76,7 +76,7 @@ public class VInicio extends JFrame {
 					vp.setVisible(true);
 					dispose();
 				} catch (NumberFormatException nfe){
-					DErrorCp decp = new DErrorCp();
+					DError decp = new DError("Error: Introduzca su código postal");
 					decp.setVisible(true);
 				}
 
