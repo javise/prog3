@@ -34,6 +34,16 @@ public class Producto {
 		this.precio = precio;
 	}
 	
+	public Producto(Producto p) { //Metodo para duplicar un producto
+		super();
+		this.opciones = p.opciones;
+		this.elegible = p.elegible;
+		this.descripcion = p.descripcion;
+		this.NombreProducto = p.NombreProducto;
+		this.ClaveProducto = p.ClaveProducto;
+		this.precio = p.precio;
+	}
+	
 	public String getOpEscogida() {
 		return opEscogida;
 	}

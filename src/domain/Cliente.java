@@ -8,18 +8,19 @@ public class Cliente {
 	boolean invitado;
 	String nombre;
 	String passwd;
+	String telefono;
+	String direccion;
 	ArrayList<Pedido> pedidos;
-	public Cliente(int idCliente, String nombre, String passwd) {
+	public Cliente(String nombre, String telefono, String direccion) {
 		super();
-		this.idCliente = idCliente;
+		this.direccion = direccion;
+		this.telefono = telefono;
 		this.nombre = nombre;
-		this.passwd = passwd;
 		this.invitado = false;
 		pedidos = null;
 	}
 	public Cliente() {
 		super();
-		this.idCliente = 0;
 		this.invitado=true;
 		this.nombre= "invitado";
 		this.passwd= " ";
@@ -28,6 +29,18 @@ public class Cliente {
 	@Override
 	public String toString() {
 		return "Cliente [invitado=" + invitado + ", nombre=" + nombre + ", passwd=" + passwd + ", pedidos=" + pedidos + "]";
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 	public int getIdCliente() {
 		return idCliente;

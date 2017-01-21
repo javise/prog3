@@ -23,6 +23,7 @@ import javax.swing.JList;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import javax.swing.JScrollPane;
 
 public class VMenu extends JFrame {
 
@@ -127,12 +128,23 @@ public class VMenu extends JFrame {
 		
 		Datos.leerMenu(Principal.selectedRest.getIdRestaurante());
 		
-		JList<String> listCat = new JList<String>(Principal.selectedRest.getMenu().categorias());
-		listCat.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		panel_3.add(listCat);
+		JScrollPane scrollPane = new JScrollPane();
+		panel_3.add(scrollPane);
+		
+		JPanel panel_4 = new JPanel();
+		panel_3.add(panel_4);
+		panel_4.setLayout(new GridLayout(0, 1, 0, 5));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		panel_4.add(scrollPane_1);
 		
 		JList<Producto> listProd = new JList<Producto>();
+		scrollPane_1.setViewportView(listProd);
 		listProd.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		JList<String> listCat = new JList<String>(Principal.selectedRest.getMenu().categorias());
+		scrollPane.setViewportView(listCat);
+		listCat.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		listCat.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
@@ -150,13 +162,6 @@ public class VMenu extends JFrame {
 		    	}catch(NullPointerException npe){}
 		    }
 		});
-		
-		
-		JPanel panel_4 = new JPanel();
-		panel_3.add(panel_4);
-		panel_4.setLayout(new GridLayout(0, 1, 0, 5));
-		
-		panel_4.add(listProd);
 		panel_4.add(txtpnDescripcion);
 		
 		JPanel panel_5 = new JPanel();

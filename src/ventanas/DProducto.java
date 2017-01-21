@@ -83,14 +83,17 @@ public class DProducto extends JFrame {
 		
 		btnAnadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Producto pr;
 				for(JRadioButton rb : rbList){
 					if(rb.isSelected()){
-						//Hay que clonar el producto p is despues modificarlo para que no se haga el cambio en la lista de productos original
-						p.setOpEscogida(rb.getText());
+						//Hay que duplicar el producto p y despues modificar para que no se 
+						//haga el cambio en la lista de productos original
+						pr = new Producto(p);
+						pr.setOpEscogida(rb.getText());
+						Principal.pedidoEnCurso.anyadirProducto(pr);
 					}
 				}
 				DProducto.this.dispose();
-				Principal.pedidoEnCurso.anyadirProducto(p);
 				vm.actualizarContador();
 			}
 		});

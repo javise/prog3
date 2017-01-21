@@ -10,15 +10,48 @@ import gestiones.Principal;
 public class Pedido {
 	ArrayList<Producto> pedido;
 	double cantidad;
+	private boolean domicilio = true; //f-local; t-domicilio
+	private String hora;
+	private String comentario;
+	int idCliente;
 	
 	public Pedido() {
 		super();
 		this.pedido= new ArrayList<Producto>();
 		this.cantidad = 0.00;
+		this.domicilio = true;
 	}
 	public void nuevoPedido() {
 		this.pedido.clear();
 		this.cantidad = 0.00;
+		this.domicilio = true;
+		this.hora = "";
+		this.comentario = "";
+	}
+	
+	public String getComentario() {
+		return comentario;
+	}
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
+	}
+	public String getHora() {
+		return hora;
+	}
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+	public boolean isDomicilio() {
+		return domicilio;
+	}
+	public void setDomicilio(boolean domicilio) {
+		this.domicilio = domicilio;
 	}
 	public void anyadirProducto(Producto p) {
 		this.pedido.add(p);

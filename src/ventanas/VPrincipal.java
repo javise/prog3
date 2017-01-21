@@ -23,6 +23,7 @@ import javax.swing.JList;
 import javax.swing.SwingConstants;
 import javax.swing.ListSelectionModel;
 import java.awt.Font;
+import javax.swing.JScrollPane;
 
 public class VPrincipal extends JFrame {
 
@@ -103,9 +104,12 @@ public class VPrincipal extends JFrame {
 		contentPane.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
+		JScrollPane scrollPane = new JScrollPane();
+		panel_3.add(scrollPane, BorderLayout.CENTER);
+		
 		JList<Restaurante> listRest = new JList<Restaurante>(Datos.restaurantesCercanos());
+		scrollPane.setViewportView(listRest);
 		listRest.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		panel_3.add(listRest);
 		
 		listRest.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {

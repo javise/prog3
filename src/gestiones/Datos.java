@@ -8,7 +8,9 @@ import java.util.Arrays;
 
 import javax.swing.DefaultListModel;
 
+import domain.Cliente;
 import domain.Menu;
+import domain.Pedido;
 import domain.Producto;
 import domain.Restaurante;
 
@@ -16,8 +18,10 @@ import java.lang.Class;
 
 public class Datos {
 	
-	private static ArrayList<Restaurante> restaurantes = new ArrayList<Restaurante>();//Lo que sería la BD
+	private static ArrayList<Restaurante> restaurantes = new ArrayList<Restaurante>();//La tabla restaurante en la DB
 	private static DefaultListModel<Restaurante> restCercanos;
+	private static ArrayList<Pedido> pedidos = new ArrayList<Pedido>(); //La tabla pedidos en la DB
+	private static ArrayList<Cliente> clientes = new ArrayList<Cliente>(); //La tabla clientes en la DB
 	
 	public static void datosEjemplo(){ //Utilizado en el constructor de VInicio para trabajar con datos de ejemplo
 		String d = "Un restaurante nacido el 1985 con exquisitos productos de primera calidad y el puro sabor americano";
@@ -37,8 +41,21 @@ public class Datos {
 		restaurantes.add(new Restaurante(13, 1, "Miu", null, "Sushi", "", 0));
 	}
 	
+	public static void enviarPedido(Pedido pe, Cliente c){
+		pe.setIdCliente(c.getIdCliente());
+		pedidos.add(pe);
+	}
+	
+	public static void anyadirCliente(Cliente c){
+		if(c.isInvitado()){
+			c.setInvitado(false);//Cuando se registra deja de ser invitado
+			clientes.add(c);
+		}
+	}
+	
 	//Imita la toma de datos de la BD considerando que los datos de los menus son demasiados para leerlos desde
 	//el principio y se piden solo los datos del menu necesitado en el constructor de la ventana VMenu
+	//Cada menu es una tabla parte en la DB identificada con el id del restaurante al que pertenece
 	public static void leerMenu(int idR) {
 		switch(idR){
 		case 4:

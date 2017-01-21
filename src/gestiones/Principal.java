@@ -5,6 +5,7 @@
  */
 package gestiones;
 
+import domain.Cliente;
 import domain.Pedido;
 import domain.Restaurante;
 import ventanas.VInicio;
@@ -13,6 +14,7 @@ public class Principal {
 	
 	public static Restaurante selectedRest;
 	public static Pedido pedidoEnCurso;
+	public static Cliente clienteActual;
 	public static int CP;
 	
 	public static void setCP(int cP) {
