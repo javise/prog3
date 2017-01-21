@@ -1,0 +1,129 @@
+package ventanasRestaurante;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import gestiones.PrincipalRestaurante;
+import ventanas.DError;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.JList;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class VRColaPedidos extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					VRColaPedidos frame = new VRColaPedidos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public VRColaPedidos() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 513, 420);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 10));
+		setContentPane(contentPane);
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnAtras = new JButton("Atras");
+		panel.add(btnAtras, BorderLayout.WEST);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VRPrincipal vrp = new VRPrincipal();
+				vrp.setVisible(true);
+				dispose();
+			}
+		});
+		
+		JLabel lblTitulo = new JLabel("COLA DE PEDIDOS");
+		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lblTitulo, BorderLayout.CENTER);
+		
+		JPanel panel_2 = new JPanel();
+		contentPane.add(panel_2, BorderLayout.CENTER);
+		panel_2.setLayout(new GridLayout(0, 2, 5, 5));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		panel_2.add(scrollPane);
+		
+		JList listPed = new JList();
+		scrollPane.setViewportView(listPed);
+		
+		JPanel panel_1 = new JPanel();
+		panel_2.add(panel_1);
+		panel_1.setLayout(new GridLayout(0, 1, 5, 5));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		panel_1.add(scrollPane_1);
+		
+		JList listProd = new JList();
+		scrollPane_1.setViewportView(listProd);
+		
+		JPanel panel_3 = new JPanel();
+		panel_1.add(panel_3);
+		panel_3.setLayout(new GridLayout(2, 1, 0, 0));
+		
+		JPanel panel_5 = new JPanel();
+		panel_3.add(panel_5);
+		panel_5.setLayout(new GridLayout(3, 2, 0, 0));
+		
+		JLabel lblPrecio = new JLabel("Precio: ");
+		panel_5.add(lblPrecio);
+		
+		JLabel lblPr = new JLabel("pr \u20AC");
+		panel_5.add(lblPr);
+		
+		JLabel lblDomiciliolocal = new JLabel("Domicilio/Local: ");
+		panel_5.add(lblDomiciliolocal);
+		
+		JLabel lblDom = new JLabel("dom");
+		panel_5.add(lblDom);
+		
+		JLabel lblHora = new JLabel("Hora: ");
+		panel_5.add(lblHora);
+		
+		JLabel lblHo = new JLabel("ho");
+		panel_5.add(lblHo);
+		
+		JLabel lblComentario = new JLabel("comentario");
+		panel_3.add(lblComentario);
+		
+		JPanel panel_4 = new JPanel();
+		contentPane.add(panel_4, BorderLayout.SOUTH);
+		
+		JButton btnTerminado = new JButton("terminado");
+		panel_4.add(btnTerminado);
+	}
+
+}
