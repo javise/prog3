@@ -24,12 +24,16 @@ public class Principal {
 	public static void setSelectedRest(Restaurante r) {
 		selectedRest = r;
 	}
+	
+	public Principal(){
+		VInicio ventanaInicio = new VInicio();
+    	ventanaInicio.setVisible(true);
+	}
 
 	public static void main(String[] args) {
+		Datos.datosEjemplo();
     	VInicio ventanaInicio = new VInicio();
     	ventanaInicio.setVisible(true);
     }
-    
-    
     
 }

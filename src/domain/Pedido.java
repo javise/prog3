@@ -2,19 +2,17 @@ package domain;
 
 
 import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
 
-import gestiones.Principal;
-
 public class Pedido {
-	ArrayList<Producto> pedido;
-	double cantidad;
+	private ArrayList<Producto> pedido;
+	private double cantidad;
 	private boolean domicilio = true; //f-local; t-domicilio. Por defecto a domicilio
 	private boolean pendiente = true; //Por defecto esta pendiente
 	private String hora;
 	private String comentario;
-	int idCliente;
+	private int idCliente;
+	private int idRestaurante;
 	
 	public Pedido() {
 		super();
@@ -29,6 +27,15 @@ public class Pedido {
 		this.comentario = "";
 	}
 	
+	public String toString() {
+		return "cliente: "+this.idCliente+" ("+this.hora+")";
+	}
+	public int getIdRestaurante() {
+		return idRestaurante;
+	}
+	public void setIdRestaurante(int idRestaurante) {
+		this.idRestaurante = idRestaurante;
+	}
 	public boolean isPendiente() {
 		return pendiente;
 	}

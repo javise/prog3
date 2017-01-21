@@ -13,6 +13,10 @@ public class Menu {
 		this.listProductos =  new HashMap<String, ArrayList<Producto>>();
 	}
 	
+	public HashMap<String, ArrayList<Producto>> getHashMap(){
+		return listProductos;
+	}
+	
 	public void anyadirProducto(Producto p, String cat){
 		if(listProductos.get(cat)==null){
 			listProductos.put(cat, new  ArrayList<Producto>());

@@ -107,8 +107,6 @@ public class VInicio extends JFrame {
 		gbc_btnAceptar.gridx = 1;
 		gbc_btnAceptar.gridy = 5;
 		contentPane.add(btnAceptar, gbc_btnAceptar);
-		
-		Datos.datosEjemplo();
 	}
 
 }

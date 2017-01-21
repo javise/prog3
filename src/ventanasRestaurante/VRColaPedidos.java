@@ -7,8 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import domain.Pedido;
+import domain.Producto;
+import gestiones.Datos;
 import gestiones.PrincipalRestaurante;
-import ventanas.DError;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,6 +21,8 @@ import javax.swing.JList;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VRColaPedidos extends JFrame {
 
@@ -77,7 +81,7 @@ public class VRColaPedidos extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		panel_2.add(scrollPane);
 		
-		JList listPed = new JList();
+		JList<Pedido> listPed = new JList<Pedido>(Datos.cola(PrincipalRestaurante.idEsteRestaurante));
 		scrollPane.setViewportView(listPed);
 		
 		JPanel panel_1 = new JPanel();
@@ -87,7 +91,7 @@ public class VRColaPedidos extends JFrame {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		panel_1.add(scrollPane_1);
 		
-		JList listProd = new JList();
+		JList<Producto> listProd = new JList<Producto>();
 		scrollPane_1.setViewportView(listProd);
 		
 		JPanel panel_3 = new JPanel();
@@ -101,22 +105,22 @@ public class VRColaPedidos extends JFrame {
 		JLabel lblPrecio = new JLabel("Precio: ");
 		panel_5.add(lblPrecio);
 		
-		JLabel lblPr = new JLabel("pr \u20AC");
+		JLabel lblPr = new JLabel("");
 		panel_5.add(lblPr);
 		
-		JLabel lblDomiciliolocal = new JLabel("Domicilio/Local: ");
+		JLabel lblDomiciliolocal = new JLabel("Dom/Local: ");
 		panel_5.add(lblDomiciliolocal);
 		
-		JLabel lblDom = new JLabel("dom");
+		JLabel lblDom = new JLabel("");
 		panel_5.add(lblDom);
 		
 		JLabel lblHora = new JLabel("Hora: ");
 		panel_5.add(lblHora);
 		
-		JLabel lblHo = new JLabel("ho");
+		JLabel lblHo = new JLabel("");
 		panel_5.add(lblHo);
 		
-		JLabel lblComentario = new JLabel("comentario");
+		JLabel lblComentario = new JLabel("");
 		panel_3.add(lblComentario);
 		
 		JPanel panel_4 = new JPanel();
@@ -124,6 +128,22 @@ public class VRColaPedidos extends JFrame {
 		
 		JButton btnTerminado = new JButton("terminado");
 		panel_4.add(btnTerminado);
+		
+		listPed.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		    	try{
+		    		listProd.setModel(listPed.getSelectedValue().modelProductos());
+		    		lblPr.setText(listPed.getSelectedValue().getCantidad()+" €");
+		    		if(listPed.getSelectedValue().isDomicilio()){
+		    			lblDom.setText("domicilio");
+		    		}else{
+		    			lblDom.setText("local");
+		    		}
+		    		lblHo.setText(listPed.getSelectedValue().getHora());
+		    		lblComentario.setText(listPed.getSelectedValue().getComentario());
+		    	}catch(NullPointerException npe){}
+		    }
+		});
 	}
 
 }

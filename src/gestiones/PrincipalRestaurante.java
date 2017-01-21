@@ -8,20 +8,23 @@ package gestiones;
 import java.util.ArrayList;
 
 import domain.Pedido;
-import domain.Restaurante;
 import ventanasRestaurante.VRInicio;
 
 public class PrincipalRestaurante {
 	
-	public static Restaurante esteRestaurante;
+	public static int idEsteRestaurante = 4;
 	public static ArrayList<Pedido> colaPedidos = new ArrayList<Pedido>();
 	public static String contraseña="1111";
 	
+	public PrincipalRestaurante(){
+		VRInicio ventanaRInicio = new VRInicio();
+    	ventanaRInicio.setVisible(true);
+	}
+	
 	public static void main(String[] args) {
+		Datos.datosEjemplo();
     	VRInicio ventanaRInicio = new VRInicio();
     	ventanaRInicio.setVisible(true);
     }
-    
-    
     
 }

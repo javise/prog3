@@ -6,10 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import domain.Producto;
+import gestiones.Datos;
+import gestiones.PrincipalRestaurante;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import java.awt.Font;
@@ -19,6 +23,7 @@ import java.awt.event.ActionListener;
 public class VREliminarProducto extends JFrame {
 
 	private JPanel contentPane;
+	private JList<Producto> list;
 
 	/**
 	 * Launch the application.
@@ -75,8 +80,20 @@ public class VREliminarProducto extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
-		JList list = new JList();
+		list = new JList<Producto>(Datos.productosPorRestaurante(PrincipalRestaurante.idEsteRestaurante));
 		scrollPane.setViewportView(list);
+		
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					DEliminar de = new DEliminar(PrincipalRestaurante.idEsteRestaurante, list.getSelectedValue(), VREliminarProducto.this);
+					de.setVisible(true);
+				}catch(NullPointerException npe){}
+			}
+		});
+	}
+	public void actualizarlista(){
+		list.setModel(Datos.productosPorRestaurante(PrincipalRestaurante.idEsteRestaurante));
 	}
 
 }

@@ -14,14 +14,14 @@ import domain.Pedido;
 import domain.Producto;
 import domain.Restaurante;
 
-import java.lang.Class;
-
 public class Datos {
 	
 	private static ArrayList<Restaurante> restaurantes = new ArrayList<Restaurante>();//La tabla restaurante en la DB
-	private static DefaultListModel<Restaurante> restCercanos;
 	private static ArrayList<Pedido> pedidos = new ArrayList<Pedido>(); //La tabla pedidos en la DB
 	private static ArrayList<Cliente> clientes = new ArrayList<Cliente>(); //La tabla clientes en la DB
+	private static Menu m4 = new Menu(); //La tabla correspondiente al menu del restaruante con id=4
+	
+	private static DefaultListModel<Restaurante> restCercanos;
 	
 	public static void datosEjemplo(){ //Utilizado en el constructor de VInicio para trabajar con datos de ejemplo
 		String d = "Un restaurante nacido el 1985 con exquisitos productos de primera calidad y el puro sabor americano";
@@ -39,10 +39,18 @@ public class Datos {
 		restaurantes.add(new Restaurante(11, 1, "Sumo", null, "Sushi", "", 0));
 		restaurantes.add(new Restaurante(12, 1, "Sushi Artist", null, "Sushi", "", 0));
 		restaurantes.add(new Restaurante(13, 1, "Miu", null, "Sushi", "", 0));
+		
+		m4.anyadirProducto(new Producto("pizza jamon", 7, "pizza jamon descripcion"), "Pizza");
+		m4.anyadirProducto(new Producto("pizza 4 quesos", 8, "pizza 4 quesos descripcion"), "Pizza");
+		m4.anyadirProducto(new Producto("pizza carbonara", 8, "pizza carbonara descripcion"), "Pizza");
+		m4.anyadirProducto(new Producto("hamburguesa", 5, "hamburguesa con queso", new ArrayList<String>(Arrays.asList("Vacuno", "Pollo", "Vegana"))), "Burguer");
+		m4.anyadirProducto(new Producto("sandwich vegetal", 3, "sandwich de tomate, lechuga y huevo"), "Sandwich");
+		m4.anyadirProducto(new Producto("sandwich mixto", 3, "sandwich de jamon y queso"), "Sandwich");
 	}
 	
-	public static void enviarPedido(Pedido pe, Cliente c){
+	public static void enviarPedido(Pedido pe, Cliente c, Restaurante r){
 		pe.setIdCliente(c.getIdCliente());
+		pe.setIdRestaurante(r.getIdRestaurante());
 		pedidos.add(pe);
 	}
 	
@@ -54,20 +62,15 @@ public class Datos {
 	}
 	
 	//Imita la toma de datos de la BD considerando que los datos de los menus son demasiados para leerlos desde
-	//el principio y se piden solo los datos del menu necesitado en el constructor de la ventana VMenu
-	//Cada menu es una tabla parte en la DB identificada con el id del restaurante al que pertenece
-	public static void leerMenu(int idR) {
+	//el principio y se piden solo los datos del menu necesitado en el constructor de la ventana VMenu (llamando a este metodo)
+	//Cada menu es una tabla aparte en la DB identificada con el id del restaurante al que pertenece
+	public static Menu leerMenu(int idR) {
+		Menu m = new Menu();
 		switch(idR){
 		case 4:
-			Menu m = new Menu();
-			m.anyadirProducto(new Producto("pizza jamon", 7, "pizza jamon descripcion"), "Pizza");
-			m.anyadirProducto(new Producto("pizza 4 quesos", 8, "pizza 4 quesos descripcion"), "Pizza");
-			m.anyadirProducto(new Producto("pizza carbonara", 8, "pizza carbonara descripcion"), "Pizza");
-			m.anyadirProducto(new Producto("hamburguesa", 5, "hamburguesa con queso", new ArrayList<String>(Arrays.asList("Vacuno", "Pollo", "Vegana"))), "Burguer");
-			m.anyadirProducto(new Producto("sandwich vegetal", 3, "sandwich de tomate, lechuga y huevo"), "Sandwich");
-			m.anyadirProducto(new Producto("sandwich mixto", 3, "sandwich de jamon y queso"), "Sandwich");
-			Principal.selectedRest.setMenu(m);
+			m=m4;
 		}
+		return m;
 	}
 	
 	public static DefaultListModel<Restaurante> restaurantesCercanos() {
@@ -104,9 +107,37 @@ public class Datos {
 		return restTipo;
 	}
 	
+	public static DefaultListModel<Producto> productosPorRestaurante(int idR) {
+		DefaultListModel<Producto> productos = new DefaultListModel<Producto>();
+		Menu menu = leerMenu(idR);
+		for ( String cat : menu.getHashMap().keySet() ) {
+			for ( Producto p : menu.getListProductos(cat) ) {
+				productos.addElement(p);
+			}
+		}
+		return productos;
+	}
+	
+	public static DefaultListModel<Pedido> cola(int idR) {
+		DefaultListModel<Pedido> cola = new DefaultListModel<Pedido>();
+		for(Pedido ped : pedidos) {
+			if(ped.getIdRestaurante()==idR){
+				cola.addElement(ped);
+			}
+		}
+		return cola;
+	}
+	
+	public static void eliminarProducto(int idR, Producto prod) {
+		Menu menu = leerMenu(idR);
+		for ( String cat : menu.getHashMap().keySet() ) {
+			menu.getListProductos(cat).remove(prod);
+		}
+	}
+	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		Class.forName("org.sqlite.JDBC");
-    	Connection con = DriverManager.getConnection("jdbc:sqlite:n.db");
+		//Class.forName("org.sqlite.JDBC");
+    	//Connection con = DriverManager.getConnection("jdbc:sqlite:n.db");
     }
 
 }

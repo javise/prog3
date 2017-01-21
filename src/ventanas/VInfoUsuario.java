@@ -119,7 +119,7 @@ public class VInfoUsuario extends JFrame {
 				Principal.pedidoEnCurso.setHora((String)comboBoxHora.getSelectedItem());
 				Principal.pedidoEnCurso.setComentario(txtrComentario.getText());
 				Datos.anyadirCliente(Principal.clienteActual);
-				Datos.enviarPedido(Principal.pedidoEnCurso, Principal.clienteActual);
+				Datos.enviarPedido(Principal.pedidoEnCurso, Principal.clienteActual, Principal.selectedRest);
 				VPrincipal vp = new VPrincipal();
 				vp.setVisible(true);
 				dispose();

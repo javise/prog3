@@ -126,7 +126,7 @@ public class VMenu extends JFrame {
 		txtpnDescripcion.setText("Descripcion");
 		txtpnDescripcion.setBounds(271, 279, 273, 58);
 		
-		Datos.leerMenu(Principal.selectedRest.getIdRestaurante());
+		Principal.selectedRest.setMenu(Datos.leerMenu(Principal.selectedRest.getIdRestaurante()));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		panel_3.add(scrollPane);
@@ -148,7 +148,9 @@ public class VMenu extends JFrame {
 		
 		listCat.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
-		    	listProd.setModel(Principal.selectedRest.getMenu().productosPorCategoria(listCat.getSelectedValue()));
+		    	try{
+		    		listProd.setModel(Principal.selectedRest.getMenu().productosPorCategoria(listCat.getSelectedValue()));
+		    	}catch(NullPointerException npe){}
 		    }
 		});
 		
