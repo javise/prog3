@@ -14,23 +14,21 @@ public class Producto {
 	ArrayList<String> opciones;
 	double precio;
 	
-	public Producto(String nombreProducto, String claveProducto, double precio, String descripcion) {
+	public Producto(String nombreProducto, double precio, String descripcion) {
 		super();
 		this.elegible = false;
 		this.descripcion = descripcion;
 		this.NombreProducto = nombreProducto;
-		this.ClaveProducto = claveProducto;
 		this.precio = precio;
 	}
 	
 	//Producto con opciones
-	public Producto(String nombreProducto, String claveProducto, double precio, String descripcion, ArrayList<String> opciones) {
+	public Producto(String nombreProducto, double precio, String descripcion, ArrayList<String> opciones) {
 		super();
 		this.opciones = opciones;
 		this.elegible = true;
 		this.descripcion = descripcion;
 		this.NombreProducto = nombreProducto;
-		this.ClaveProducto = claveProducto;
 		this.precio = precio;
 	}
 	

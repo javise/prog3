@@ -60,12 +60,12 @@ public class Datos {
 		switch(idR){
 		case 4:
 			Menu m = new Menu();
-			m.anyadirProducto(new Producto("pizza jamon", null, 7, "pizza jamon descripcion"), "Pizza");
-			m.anyadirProducto(new Producto("pizza 4 quesos", null, 8, "pizza 4 quesos descripcion"), "Pizza");
-			m.anyadirProducto(new Producto("pizza carbonara", null, 8, "pizza carbonara descripcion"), "Pizza");
-			m.anyadirProducto(new Producto("hamburguesa", null, 5, "hamburguesa con queso", new ArrayList<String>(Arrays.asList("Vacuno", "Pollo", "Vegana"))), "Burguer");
-			m.anyadirProducto(new Producto("sandwich vegetal", null, 3, "sandwich de tomate, lechuga y huevo"), "Sandwich");
-			m.anyadirProducto(new Producto("sandwich mixto", null, 3, "sandwich de jamon y queso"), "Sandwich");
+			m.anyadirProducto(new Producto("pizza jamon", 7, "pizza jamon descripcion"), "Pizza");
+			m.anyadirProducto(new Producto("pizza 4 quesos", 8, "pizza 4 quesos descripcion"), "Pizza");
+			m.anyadirProducto(new Producto("pizza carbonara", 8, "pizza carbonara descripcion"), "Pizza");
+			m.anyadirProducto(new Producto("hamburguesa", 5, "hamburguesa con queso", new ArrayList<String>(Arrays.asList("Vacuno", "Pollo", "Vegana"))), "Burguer");
+			m.anyadirProducto(new Producto("sandwich vegetal", 3, "sandwich de tomate, lechuga y huevo"), "Sandwich");
+			m.anyadirProducto(new Producto("sandwich mixto", 3, "sandwich de jamon y queso"), "Sandwich");
 			Principal.selectedRest.setMenu(m);
 		}
 	}

@@ -10,7 +10,8 @@ import gestiones.Principal;
 public class Pedido {
 	ArrayList<Producto> pedido;
 	double cantidad;
-	private boolean domicilio = true; //f-local; t-domicilio
+	private boolean domicilio = true; //f-local; t-domicilio. Por defecto a domicilio
+	private boolean pendiente = true; //Por defecto esta pendiente
 	private String hora;
 	private String comentario;
 	int idCliente;
@@ -19,7 +20,6 @@ public class Pedido {
 		super();
 		this.pedido= new ArrayList<Producto>();
 		this.cantidad = 0.00;
-		this.domicilio = true;
 	}
 	public void nuevoPedido() {
 		this.pedido.clear();
@@ -29,6 +29,12 @@ public class Pedido {
 		this.comentario = "";
 	}
 	
+	public boolean isPendiente() {
+		return pendiente;
+	}
+	public void setPendiente(boolean pendiente) {
+		this.pendiente = pendiente;
+	}
 	public String getComentario() {
 		return comentario;
 	}
