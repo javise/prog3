@@ -133,7 +133,7 @@ public class VRHistorial extends JFrame {
 		    			lblDom.setText("local");
 		    		}
 		    		lblHo.setText(listPed.getSelectedValue().getHora());
-		    		lblCliente.setText(Integer.toString(listPed.getSelectedValue().getIdCliente()));
+		    		lblCl.setText(Integer.toString(listPed.getSelectedValue().getIdCliente()));
 		    	}catch(NullPointerException npe){}
 		    }
 		});

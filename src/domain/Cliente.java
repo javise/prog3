@@ -26,7 +26,16 @@ public class Cliente {
 		this.passwd= " ";
 		pedidos = null;
 	}
-	@Override
+	public Cliente(Cliente c) {
+		this.idCliente = c.idCliente;
+		this.invitado = c.invitado;
+		this.nombre = c.nombre;
+		this.passwd = c.passwd;
+		this.telefono = c.telefono;
+		this.direccion = c.direccion;
+		this.pedidos = c.pedidos;
+	}
+	
 	public String toString() {
 		return "Cliente [invitado=" + invitado + ", nombre=" + nombre + ", passwd=" + passwd + ", pedidos=" + pedidos + "]";
 	}

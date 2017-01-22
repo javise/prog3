@@ -35,7 +35,7 @@ public class Datos {
 		restaurantes.add(new Restaurante(7, 1, "Florida", null, "Americano", "", 0));
 		restaurantes.add(new Restaurante(8, 1, "Deluxe", null, "Americano", "", 0));
 		restaurantes.add(new Restaurante(9, 1, "Don Angelo", null, "Italiano", "", 0));
-		restaurantes.add(new Restaurante(10, 1, " La Tagliatella", null, "Italiano", "", 0));
+		restaurantes.add(new Restaurante(10, 1, "La Tagliatella", null, "Italiano", "", 0));
 		restaurantes.add(new Restaurante(11, 1, "Sumo", null, "Sushi", "", 0));
 		restaurantes.add(new Restaurante(12, 1, "Sushi Artist", null, "Sushi", "", 0));
 		restaurantes.add(new Restaurante(13, 1, "Miu", null, "Sushi", "", 0));
@@ -48,9 +48,9 @@ public class Datos {
 		m4.anyadirProducto(new Producto("sandwich mixto", 3, "sandwich de jamon y queso"), "Sandwich");
 	}
 	
-	public static void enviarPedido(Pedido pe, Cliente c, Restaurante r){
-		pe.setIdCliente(c.getIdCliente());
-		pe.setIdRestaurante(r.getIdRestaurante());
+	public static void enviarPedido(Pedido pe, int idCliente, int idRest){
+		pe.setIdCliente(idCliente);
+		pe.setIdRestaurante(idRest);
 		pedidos.add(pe);
 	}
 	
@@ -61,7 +61,7 @@ public class Datos {
 		}
 	}
 	
-	public static void terminarPedido(Pedido p, int idR){
+	public static void terminarPedido(Pedido p){
 		for ( Pedido ped : pedidos ) {
 			if(ped.equals(p)){
 				ped.setPendiente(false);
@@ -83,16 +83,6 @@ public class Datos {
 			m=m4;
 		}
 		return m;
-	}
-	
-	public static DefaultListModel<Restaurante> restaurantesCercanos() {
-		restCercanos = new DefaultListModel<Restaurante>();
-		for(int i=0; i<restaurantes.size(); i++) {
-			if(restaurantes.get(i).getCodPost() == Principal.CP){
-				restCercanos.addElement(restaurantes.get(i));
-			}
-		}
-		return restCercanos;
 	}
 	
 	public static DefaultListModel<Restaurante> buscarCoincidencias(String trozo) {
@@ -138,6 +128,16 @@ public class Datos {
 			}
 		}
 		return cola;
+	}
+	
+	public static DefaultListModel<Restaurante> restaurantesCercanos() {
+		restCercanos = new DefaultListModel<Restaurante>();
+		for(int i=0; i<restaurantes.size(); i++) {
+			if(restaurantes.get(i).getCodPost() == Principal.CP){
+				restCercanos.addElement(restaurantes.get(i));
+			}
+		}
+		return restCercanos;
 	}
 	
 	public static DefaultListModel<Pedido> historial(int idR) {

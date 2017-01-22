@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import domain.Cliente;
+import domain.Pedido;
 import gestiones.Datos;
 import gestiones.Principal;
 
@@ -111,6 +112,8 @@ public class VInfoUsuario extends JFrame {
 		JButton btnEnviarPedido = new JButton("Enviar Pedido");
 		btnEnviarPedido.setBounds(114, 312, 111, 23);
 		contentPane.add(btnEnviarPedido);
+		//Se guarda en el array (imita DB) una copia del que se maneja en la aplicacion, tanto para cliente como para pedido,
+		//de lo contrario la siguiente vez el objeto estaría apuntando a la misma instancia y se modificarían ambos.
 		btnEnviarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Principal.clienteActual.setNombre(txtNombre.getText());
@@ -118,12 +121,12 @@ public class VInfoUsuario extends JFrame {
 				Principal.clienteActual.setDireccion(txtDir.getText());
 				Principal.pedidoEnCurso.setHora((String)comboBoxHora.getSelectedItem());
 				Principal.pedidoEnCurso.setComentario(txtrComentario.getText());
-				Datos.anyadirCliente(Principal.clienteActual);
-				Datos.enviarPedido(Principal.pedidoEnCurso, Principal.clienteActual, Principal.selectedRest);
+				Datos.anyadirCliente(new Cliente(Principal.clienteActual));
+				Datos.enviarPedido(new Pedido(Principal.pedidoEnCurso), Principal.clienteActual.getIdCliente(), Principal.selectedRest.getIdRestaurante());
+				Principal.pedidoEnCurso.nuevoPedido();//Disponemos para realizar un nuevo pedido
 				VPrincipal vp = new VPrincipal();
 				vp.setVisible(true);
 				dispose();
-				
 			}
 		});
 		

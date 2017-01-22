@@ -23,8 +23,21 @@ public class Pedido {
 		this.pedido.clear();
 		this.cantidad = 0.00;
 		this.domicilio = true;
+		this.pendiente = true;
 		this.hora = "";
 		this.comentario = "";
+	}
+	
+	public Pedido(Pedido pedido) { //Metodo para duplicar un pedido
+		this.pedido = new ArrayList<Producto>(pedido.pedido);
+		this.cantidad = pedido.cantidad;
+		this.domicilio = pedido.domicilio;
+		this.pendiente = pedido.pendiente;
+		this.hora = pedido.hora;
+		this.comentario = pedido.comentario;
+		this.idCliente = pedido.idCliente;
+		this.idRestaurante = pedido.idRestaurante;
+		
 	}
 	
 	public String toString() {
@@ -77,7 +90,7 @@ public class Pedido {
 	public double calcularCuenta(){
 		cantidad = 0.0;
 		for(int i=0; i<pedido.size(); i++)
-			this.cantidad= this.cantidad + pedido.get(i).precio;
+			this.cantidad= this.cantidad + pedido.get(i).getPrecio();
 		return cantidad;
 	}
 	public ArrayList<Producto> getPedido() {

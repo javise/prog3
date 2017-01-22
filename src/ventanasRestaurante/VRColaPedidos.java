@@ -13,6 +13,7 @@ import gestiones.Datos;
 import gestiones.PrincipalRestaurante;
 import ventanas.DError;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -131,13 +132,16 @@ public class VRColaPedidos extends JFrame {
 		
 		JButton btnTerminado = new JButton("terminado");
 		panel_4.add(btnTerminado);
-		btnAtras.addActionListener(new ActionListener() {
+		btnTerminado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 		    	try{
-		    		Datos.terminarPedido(listPed.getSelectedValue(), PrincipalRestaurante.idEsteRestaurante);
+		    		Datos.terminarPedido(listPed.getSelectedValue());
 		    		actualizarlista();
-		    		listProd.removeAll();
-		    		
+		    		listProd.setModel(new DefaultListModel());
+		    		lblPr.setText("");
+		    		lblDom.setText("");
+		    		lblHo.setText("");
+		    		lblComentario.setText("");
 		    	}catch(NullPointerException npe){
 		    		DError de = new DError("Seleccione un pedido");
 					de.setVisible(true);
