@@ -94,7 +94,7 @@ public class Producto {
 	}
 	
 	public String toString() {
-		return NombreProducto+" "+opEscogida;
+		return NombreProducto+" "+opEscogida+" "+precio+" €";
 	}
 
 }
