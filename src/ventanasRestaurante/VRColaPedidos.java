@@ -29,6 +29,7 @@ import java.awt.event.MouseEvent;
 public class VRColaPedidos extends JFrame {
 
 	private JPanel contentPane;
+	private boolean abierta = true; 
 
 	/**
 	 * Launch the application.
@@ -51,6 +52,17 @@ public class VRColaPedidos extends JFrame {
 	 */
 	private JList<Pedido> listPed; 
 	
+	Thread hilo = new Thread() {
+		public void run() {
+			while (abierta){
+				actualizarlista();
+				try {
+					sleep(10000);//Cada 10 segundos
+				} catch (InterruptedException e) {e.printStackTrace();}
+			}
+		}
+	};
+	
 	public VRColaPedidos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 513, 420);
@@ -70,6 +82,7 @@ public class VRColaPedidos extends JFrame {
 				VRPrincipal vrp = new VRPrincipal();
 				vrp.setVisible(true);
 				dispose();
+				abierta=false;
 			}
 		});
 		
@@ -112,7 +125,7 @@ public class VRColaPedidos extends JFrame {
 		JLabel lblPr = new JLabel("");
 		panel_5.add(lblPr);
 		
-		JLabel lblDomiciliolocal = new JLabel("Dom/Local: ");
+		JLabel lblDomiciliolocal = new JLabel("Dir/Local: ");
 		panel_5.add(lblDomiciliolocal);
 		
 		JLabel lblDom = new JLabel("");
@@ -137,7 +150,7 @@ public class VRColaPedidos extends JFrame {
 		    	try{
 		    		Datos.terminarPedido(listPed.getSelectedValue());
 		    		actualizarlista();
-		    		listProd.setModel(new DefaultListModel());
+		    		listProd.setModel(new DefaultListModel<Producto>());
 		    		lblPr.setText("");
 		    		lblDom.setText("");
 		    		lblHo.setText("");
@@ -155,7 +168,7 @@ public class VRColaPedidos extends JFrame {
 		    		listProd.setModel(listPed.getSelectedValue().modelProductos());
 		    		lblPr.setText(listPed.getSelectedValue().getCantidad()+" €");
 		    		if(listPed.getSelectedValue().isDomicilio()){
-		    			lblDom.setText("domicilio");
+		    			lblDom.setText(listPed.getSelectedValue().getDireccion());
 		    		}else{
 		    			lblDom.setText("local");
 		    		}
@@ -164,6 +177,8 @@ public class VRColaPedidos extends JFrame {
 		    	}catch(NullPointerException npe){}
 		    }
 		});
+		
+		hilo.start();
 	}
 	public void actualizarlista(){
 		listPed.setModel(Datos.cola(PrincipalRestaurante.idEsteRestaurante));

@@ -121,6 +121,9 @@ public class VInfoUsuario extends JFrame {
 				Principal.clienteActual.setDireccion(txtDir.getText());
 				Principal.pedidoEnCurso.setHora((String)comboBoxHora.getSelectedItem());
 				Principal.pedidoEnCurso.setComentario(txtrComentario.getText());
+				if(Principal.pedidoEnCurso.isDomicilio()){
+					Principal.pedidoEnCurso.setDireccion(txtDir.getText());
+				}
 				Datos.anyadirCliente(new Cliente(Principal.clienteActual));
 				Datos.enviarPedido(new Pedido(Principal.pedidoEnCurso), Principal.clienteActual.getIdCliente(), Principal.selectedRest.getIdRestaurante());
 				Principal.pedidoEnCurso.nuevoPedido();//Disponemos para realizar un nuevo pedido

@@ -11,6 +11,7 @@ public class Pedido {
 	private boolean pendiente = true; //Por defecto esta pendiente
 	private String hora;
 	private String comentario;
+	private String direccion;
 	private int idCliente;
 	private int idRestaurante;
 	
@@ -26,6 +27,7 @@ public class Pedido {
 		this.pendiente = true;
 		this.hora = "";
 		this.comentario = "";
+		this.direccion = "";
 	}
 	
 	public Pedido(Pedido pedido) { //Metodo para duplicar un pedido
@@ -37,11 +39,17 @@ public class Pedido {
 		this.comentario = pedido.comentario;
 		this.idCliente = pedido.idCliente;
 		this.idRestaurante = pedido.idRestaurante;
-		
+		this.direccion = pedido.direccion;
 	}
 	
 	public String toString() {
 		return "cliente: "+this.idCliente+" ("+this.hora+")";
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 	public int getIdRestaurante() {
 		return idRestaurante;
