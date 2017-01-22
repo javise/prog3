@@ -6,13 +6,13 @@ import gestiones.Principal;
 
 public class Producto {
 
-	String NombreProducto;
-	String ClaveProducto;
-	String descripcion;
-	boolean elegible;
-	String opEscogida="";
-	ArrayList<String> opciones;
-	double precio;
+	private String NombreProducto;
+	private String ClaveProducto;
+	private String descripcion;
+	private boolean elegible;
+	private String opEscogida="";
+	private ArrayList<String> opciones;
+	private double precio;
 	
 	public Producto(String nombreProducto, double precio, String descripcion) {
 		super();
@@ -52,6 +52,9 @@ public class Producto {
 
 	public boolean isElegible() {
 		return elegible;
+	}
+	public void setElegible(boolean elegible) {
+		this.elegible = elegible;
 	}
 
 	public ArrayList<String> getOpciones() {

@@ -28,6 +28,12 @@ public class Menu {
 		return listProductos.get(cat);
 	}
 	
+	public void eliminarProducto(Producto p) {
+		for ( String cat : listProductos.keySet() ) {
+			listProductos.get(cat).remove(p);
+		}
+	}
+	
 	public DefaultListModel<String> categorias() {
 		DefaultListModel<String> listCategorias = new DefaultListModel<String>();
 		for ( String cat : listProductos.keySet() ) {

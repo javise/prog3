@@ -11,6 +11,7 @@ import domain.Pedido;
 import domain.Producto;
 import gestiones.Datos;
 import gestiones.PrincipalRestaurante;
+import ventanas.DError;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -47,6 +48,8 @@ public class VRColaPedidos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	private JList<Pedido> listPed; 
+	
 	public VRColaPedidos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 513, 420);
@@ -81,7 +84,7 @@ public class VRColaPedidos extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		panel_2.add(scrollPane);
 		
-		JList<Pedido> listPed = new JList<Pedido>(Datos.cola(PrincipalRestaurante.idEsteRestaurante));
+		listPed = new JList<Pedido>(Datos.cola(PrincipalRestaurante.idEsteRestaurante));
 		scrollPane.setViewportView(listPed);
 		
 		JPanel panel_1 = new JPanel();
@@ -128,6 +131,19 @@ public class VRColaPedidos extends JFrame {
 		
 		JButton btnTerminado = new JButton("terminado");
 		panel_4.add(btnTerminado);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+		    	try{
+		    		Datos.terminarPedido(listPed.getSelectedValue(), PrincipalRestaurante.idEsteRestaurante);
+		    		actualizarlista();
+		    		listProd.removeAll();
+		    		
+		    	}catch(NullPointerException npe){
+		    		DError de = new DError("Seleccione un pedido");
+					de.setVisible(true);
+		    	}
+		    }
+		});
 		
 		listPed.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
@@ -144,6 +160,9 @@ public class VRColaPedidos extends JFrame {
 		    	}catch(NullPointerException npe){}
 		    }
 		});
+	}
+	public void actualizarlista(){
+		listPed.setModel(Datos.cola(PrincipalRestaurante.idEsteRestaurante));
 	}
 
 }

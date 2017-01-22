@@ -61,6 +61,18 @@ public class Datos {
 		}
 	}
 	
+	public static void terminarPedido(Pedido p, int idR){
+		for ( Pedido ped : pedidos ) {
+			if(ped.equals(p)){
+				ped.setPendiente(false);
+			}
+		}
+	}
+	
+	public static void nuevoProductoAlMenu(Producto p, String cat, int idR) {
+		leerMenu(idR).anyadirProducto(p, cat);
+	}
+	
 	//Imita la toma de datos de la BD considerando que los datos de los menus son demasiados para leerlos desde
 	//el principio y se piden solo los datos del menu necesitado en el constructor de la ventana VMenu (llamando a este metodo)
 	//Cada menu es una tabla aparte en la DB identificada con el id del restaurante al que pertenece
@@ -121,18 +133,26 @@ public class Datos {
 	public static DefaultListModel<Pedido> cola(int idR) {
 		DefaultListModel<Pedido> cola = new DefaultListModel<Pedido>();
 		for(Pedido ped : pedidos) {
-			if(ped.getIdRestaurante()==idR){
+			if(ped.getIdRestaurante()==idR && ped.isPendiente()){
 				cola.addElement(ped);
 			}
 		}
 		return cola;
 	}
 	
+	public static DefaultListModel<Pedido> historial(int idR) {
+		DefaultListModel<Pedido> historial = new DefaultListModel<Pedido>();
+		for(Pedido ped : pedidos) {
+			if(ped.getIdRestaurante()==idR && !ped.isPendiente()){
+				historial.addElement(ped);
+			}
+		}
+		return historial;
+	}
+	
 	public static void eliminarProducto(int idR, Producto prod) {
 		Menu menu = leerMenu(idR);
-		for ( String cat : menu.getHashMap().keySet() ) {
-			menu.getListProductos(cat).remove(prod);
-		}
+		menu.eliminarProducto(prod);
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {

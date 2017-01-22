@@ -5,15 +5,11 @@
  */
 package gestiones;
 
-import java.util.ArrayList;
-
-import domain.Pedido;
 import ventanasRestaurante.VRInicio;
 
 public class PrincipalRestaurante {
 	
 	public static int idEsteRestaurante = 4;
-	public static ArrayList<Pedido> colaPedidos = new ArrayList<Pedido>();
 	public static String contraseña="1111";
 	
 	public PrincipalRestaurante(){
